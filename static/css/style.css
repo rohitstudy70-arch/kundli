@@ -1357,6 +1357,458 @@ select:focus-visible {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
+/* ==========================================================================
+   Comprehensive Mobile & Tablet Responsive Architecture
+   Covers: Mobile (320px-480px), Phablets (481px-768px), Tablets (769px-991px), Desktop (992px+)
+   ========================================================================== */
+
+/* 1. Global Viewport Overflow & Media Protection */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
+}
+
+img, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 2. Footer Modern Grid Layout */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr;
+  gap: 2rem;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.footer-col-title {
+  color: var(--accent-gold);
+  font-family: 'Tiro Devanagari Hindi', serif;
+  font-size: 1.15rem;
+  margin-bottom: 0.85rem;
+}
+
+.footer-desc {
+  color: #A0AABF;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.45rem;
+}
+
+.footer-links a {
+  color: #D3D8E2;
+  text-decoration: none;
+  font-size: 0.88rem;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent-gold);
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.25rem;
+  text-align: center;
+}
+
+/* 3. Action Bar Stacking for Print & Result Headers */
+#kundliResultsContainer > div:first-child,
+#matchingResultsContainer > div:first-child {
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* 4. Large Tablets & Small Laptops (max-width: 991px) */
+@media (max-width: 991px) {
+  .app-layout {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+
+  .navbar-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #480D14;
+    flex-direction: column;
+    padding: 0.85rem 1rem 1.25rem;
+    gap: 0.4rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    border-bottom: 3px solid var(--accent-gold);
+    z-index: 9999;
+    max-height: 80vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .navbar-menu.show {
+    display: flex;
+  }
+
+  .navbar-link {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+  }
+}
+
+/* 5. Standard Tablets & Mobile Landscape (max-width: 768px) */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem 0.75rem;
+  }
+
+  .site-header {
+    padding: 1.15rem 0.75rem;
+  }
+
+  .site-title {
+    font-size: 1.55rem;
+  }
+
+  .match-two-col {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  /* Sticky First Column for Wide Tables on Touch Devices */
+  .custom-table {
+    font-size: 0.85rem;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 0.6rem 0.55rem;
+  }
+
+  .custom-table th:first-child,
+  .custom-table td:first-child {
+    position: sticky;
+    left: 0;
+    background-color: #FFFFFF;
+    z-index: 2;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.06);
+  }
+
+  .custom-table th:first-child {
+    background-color: #F8F2E8;
+    z-index: 3;
+  }
+
+  .custom-table tr:hover td:first-child {
+    background-color: #FDF9F2;
+  }
+
+  .custom-table tr.active-dasha-row td:first-child {
+    background-color: #FFF6DD;
+  }
+
+  /* Prevent iOS Safari Auto-Zoom on Input Focus */
+  input.form-control,
+  select.form-control,
+  textarea.form-control,
+  input[type="text"],
+  input[type="date"],
+  input[type="time"],
+  select {
+    font-size: 16px !important;
+    min-height: 44px;
+  }
+
+  .btn {
+    min-height: 44px;
+  }
+}
+
+/* 6. Phablets & Mobile Devices (max-width: 600px) */
+@media (max-width: 600px) {
+  .chart-switcher-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+
+  .chart-switch-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.55rem 0.4rem;
+    font-size: 0.84rem;
+  }
+
+  .houses-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  #kundliResultsContainer > div:first-child,
+  #matchingResultsContainer > div:first-child {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  #kundliResultsContainer > div:first-child button,
+  #matchingResultsContainer > div:first-child button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* 7. Standard Mobile Phones (max-width: 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .navbar-container {
+    padding: 0 0.5rem;
+  }
+
+  .navbar-brand {
+    font-size: 0.95rem;
+    gap: 0.35rem;
+  }
+
+  .brand-om {
+    font-size: 1.15rem;
+  }
+
+  .navbar-actions {
+    gap: 0.35rem;
+  }
+
+  .nav-lang-btn {
+    padding: 0.2rem 0.45rem;
+    font-size: 0.72rem;
+  }
+
+  .navbar-toggle {
+    padding: 0.25rem 0.5rem;
+    font-size: 1.1rem;
+    min-width: 38px;
+    min-height: 38px;
+  }
+
+  .site-header {
+    padding: 0.95rem 0.5rem;
+  }
+
+  .site-title {
+    font-size: 1.35rem;
+    line-height: 1.25;
+  }
+
+  .site-tagline {
+    font-size: 0.82rem;
+    line-height: 1.4;
+  }
+
+  .site-badge {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.55rem;
+  }
+
+  .site-nav-pills {
+    gap: 0.3rem;
+    margin-top: 0.65rem;
+  }
+
+  .nav-pill {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  article.card,
+  section.card,
+  .card {
+    padding: 1rem 0.8rem !important;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+  }
+
+  .card-header {
+    padding-bottom: 0.55rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  /* Full Bleed Swipable Report Tabs */
+  .report-tabs-wrapper {
+    margin-left: -0.8rem;
+    margin-right: -0.8rem;
+    border-radius: 0;
+    padding: 0.4rem 0.5rem 0;
+  }
+
+  .report-tabs {
+    scrollbar-width: none;
+  }
+
+  .report-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .report-tab-btn {
+    padding: 0.55rem 0.7rem;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  /* 2-Column Balanced Avakhada Grid */
+  .avakhada-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+
+  .avakhada-card {
+    padding: 0.6rem 0.55rem;
+  }
+
+  .avakhada-label {
+    font-size: 0.7rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .avakhada-value {
+    font-size: 0.9rem;
+  }
+
+  /* Quick Details Grid */
+  .details-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+
+  .detail-pill {
+    padding: 0.5rem 0.4rem;
+  }
+
+  .detail-label {
+    font-size: 0.72rem;
+  }
+
+  .detail-value {
+    font-size: 0.88rem;
+  }
+
+  /* Dosha Cards */
+  .dosha-box {
+    padding: 0.85rem;
+  }
+
+  .dosha-box-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
+  .dosha-box-title {
+    font-size: 1.05rem;
+  }
+
+  .dosha-badge {
+    font-size: 0.78rem;
+  }
+
+  /* Kundli Charts */
+  .kundli-chart-wrapper {
+    padding: 0.5rem;
+  }
+
+  .kundli-svg-chart,
+  .south-indian-chart {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 1 / 1;
+  }
+
+  /* Form Elements */
+  .form-group {
+    margin-bottom: 0.85rem;
+  }
+
+  .btn-submit-kundli {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* 8. Extra-Small Mobile Screens (max-width: 360px - iPhone SE / compact Android) */
+@media (max-width: 360px) {
+  .navbar-brand {
+    font-size: 0.85rem;
+    gap: 0.25rem;
+  }
+
+  .brand-om {
+    font-size: 1rem;
+  }
+
+  .site-title {
+    font-size: 1.22rem;
+  }
+
+  .container {
+    padding: 0.5rem 0.35rem;
+  }
+
+  article.card,
+  section.card,
+  .card {
+    padding: 0.85rem 0.65rem !important;
+  }
+
+  .custom-table th,
+  .custom-table td {
+    padding: 0.45rem 0.35rem;
+    font-size: 0.76rem;
+  }
+
+  .chart-switcher-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.35rem;
+  }
+
+  .chart-switch-btn {
+    font-size: 0.78rem;
+    padding: 0.45rem 0.25rem;
+  }
+}
+
 
 
 
