@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO: Title & Meta Description with Target Keywords -->
+  <title>लग्न कैलकुलेटर: Lagna Kaise Nikale - जन्म लग्न राशि</title>
+  <meta name="description" content="लग्न कैसे निकाले (Lagna Kaise Nikale)? जन्म तिथि, समय व स्थान से सटीक वैदिक जन्म लग्न, लग्न भाव, अंश व लग्नेश की गणना करें। Free Kundali सेवा।">
+  <meta name="keywords" content="lagna kaise nikale, लग्न कैलकुलेटर, janam kundali hindi mein, free kundali, जन्म लग्न, लग्न राशि, ascendant calculator hindi">
+  <meta name="author" content="Vedic Kundali">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="http://127.0.0.1:5000/lagna-calculator">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="लग्न कैलकुलेटर: Lagna Kaise Nikale - जन्म लग्न राशि">
+  <meta property="og:description" content="जन्म तिथि और समय से जानिए अपना सटीक जन्म लग्न, अंश, नक्षत्र व लग्नेश।">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://127.0.0.1:5000/lagna-calculator">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <!-- JSON-LD FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "लग्न कैसे निकाले (Lagna Kaise Nikale)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "लग्न निकालने के लिए जन्म तिथि, सटीक जन्म समय और जन्म स्थान के अक्षांश-देशांतर की आवश्यकता होती है। जन्म समय को स्थानीय नाक्षत्र समय (Sidereal Time) में बदलकर, क्षितिज और क्रांतिवृत्त के मिलन कोण में से लाहिड़ी अयनांश घटाने पर सटीक जन्म लग्न प्राप्त होता है।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "लग्न राशि और चंद्र राशि में क्या अंतर है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "जन्म के समय पूर्वी क्षितिज पर उदित राशि 'लग्न' कहलाती है, जो हर 2 घंटे में बदलती है और शरीर व व्यक्तित्व को दर्शाती है। वहीं जन्म के समय चंद्रमा जिस राशि में स्थित होता है, वह 'चंद्र राशि' कहलाती है, जो सवा दो दिन में बदलती है और मन व भावनाओं को दर्शाती है।"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <nav class="main-navbar print-hide" aria-label="मुख्य नेविगेशन बार">
+    <div class="navbar-container">
+      <a href="/" class="navbar-brand">
+        <span class="brand-om">ॐ</span>
+        <span data-i18n="brand_title">वैदिक जन्म कुंडली</span>
+      </a>
+
+      <!-- Desktop & Mobile Links -->
+      <ul class="navbar-menu" id="navbarMenu">
+        <li><a href="/" class="navbar-link" data-i18n="nav_kundli">📜 जन्म कुंडली</a></li>
+        <li><a href="/matching" class="navbar-link" data-i18n="nav_matching">💍 कुंडली मिलान</a></li>
+        <li><a href="/lagna-calculator" class="navbar-link active" data-i18n="nav_lagna">🌅 लग्न</a></li>
+        <li><a href="/vimshottari-dasha" class="navbar-link" data-i18n="nav_dasha">⌛ महादशा</a></li>
+        <li><a href="/nakshatra-calculator" class="navbar-link" data-i18n="nav_nakshatra">✨ नक्षत्र</a></li>
+        <li><a href="/manglik-dosh" class="navbar-link" data-i18n="nav_manglik">🔥 मांगलिक दोष</a></li>
+        <li><a href="/sade-sati" class="navbar-link" data-i18n="nav_sade_sati">🪐 साढ़े साती</a></li>
+        <li><a href="/panchang" class="navbar-link" data-i18n="nav_panchang">📅 पंचांग</a></li>
+      </ul>
+
+      <!-- Right Actions: Language Switcher + Mobile Toggle -->
+      <div class="navbar-actions">
+        <div class="nav-lang-switch">
+          <button type="button" class="nav-lang-btn active" data-set-lang="hi">HI</button>
+          <button type="button" class="nav-lang-btn" data-set-lang="en">EN</button>
+        </div>
+        <button type="button" class="navbar-toggle" id="navbarToggle" aria-label="मेन्यू खोलें">
+          ☰
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-badge">
+        <span>🌅</span>
+        <span>लाहिड़ी अयनांश पर आधारित खगोलीय लग्न कैलकुलेटर</span>
+      </div>
+      <h1 class="site-title">लग्न कैलकुलेटर (Lagna Kaise Nikale)</h1>
+      <p class="site-tagline">जन्म तिथि, समय व स्थान से सटीक वैदिक जन्म लग्न, लग्नेश व प्रथम भाव की स्थिति जानें</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="app-layout">
+      <!-- Input Form -->
+      <section class="card print-hide">
+        <div class="card-header">
+          <h2 class="card-title" style="margin: 0;">
+            <span>🌅</span>
+            <span>लग्न जानने हेतु विवरण दर्ज करें</span>
+          </h2>
+        </div>
+
+        <form id="lagnaForm" action="/lagna-calculator" method="GET">
+          <div class="form-group">
+            <label for="name" class="form-label">नाम</label>
+            <input type="text" id="name" name="name" class="form-control" value="{{ params.name }}" placeholder="उदा. अमित">
+          </div>
+
+          <div class="form-group">
+            <label for="birth_date" class="form-label">जन्म तिथि<span class="required">*</span></label>
+            <input type="date" id="birth_date" name="birth_date" class="form-control" value="{{ params.birth_date }}" required>
+          </div>
+
+          <div class="form-group">
+            <label for="birth_time" class="form-label">जन्म समय<span class="required">*</span></label>
+            <input type="time" id="birth_time" name="birth_time" step="1" class="form-control" value="{{ params.birth_time }}" required>
+          </div>
+
+          <div class="form-group">
+            <label for="place_name" class="form-label">जन्म स्थान<span class="required">*</span></label>
+            <div class="autocomplete-wrapper">
+              <input type="text" id="place_name" name="place_name" class="form-control" value="{{ params.place_name }}" placeholder="उदा. नई दिल्ली, मुंबई" required autocomplete="off">
+              <span id="placeSpinner" class="autocomplete-spinner">खोज रहे हैं...</span>
+              <div id="placeDropdown" class="autocomplete-dropdown"></div>
+            </div>
+          </div>
+
+          <input type="hidden" id="latitude" name="latitude" value="{{ params.latitude }}">
+          <input type="hidden" id="longitude" name="longitude" value="{{ params.longitude }}">
+          <input type="hidden" id="timezone" name="timezone" value="{{ params.timezone }}">
+
+          <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">
+            <span>🌅</span>
+            <span>लग्न निकालें (Calculate Lagna)</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Results Display -->
+      <section>
+        <div class="card" style="border-top: 5px solid var(--primary-vermilion); text-align: center;">
+          <h3 style="color: var(--text-muted); font-size: 0.95rem; text-transform: uppercase;">आपका वैदिक जन्म लग्न</h3>
+          <div style="font-size: 2.8rem; font-weight: 800; color: var(--primary-dark); font-family: 'Tiro Devanagari Hindi', serif; margin: 0.5rem 0;">
+            {{ result.lagna.rashi.name_hi }} लग्न
+          </div>
+          <p style="font-size: 1.1rem; color: var(--accent-gold); font-weight: 700;">
+            अंश: {{ result.lagna.deg_dms }} | लग्नेश: {{ result.lagna.rashi_lord }}
+          </p>
+
+          <div class="details-grid" style="margin-top: 1.5rem;">
+            <div class="detail-pill">
+              <span class="detail-pill-label">लग्न नक्षत्र</span>
+              <span class="detail-pill-val">{{ result.lagna.nakshatra.name_hi }} (चरण {{ result.lagna.pada }})</span>
+            </div>
+            <div class="detail-pill">
+              <span class="detail-pill-label">नक्षत्र स्वामी</span>
+              <span class="detail-pill-val">{{ result.lagna.nakshatra.lord_hi }}</span>
+            </div>
+            <div class="detail-pill">
+              <span class="detail-pill-label">चंद्र राशि</span>
+              <span class="detail-pill-val">{{ result.panchang.moon_rashi }}</span>
+            </div>
+            <div class="detail-pill">
+              <span class="detail-pill-label">लाहिड़ी अयनांश</span>
+              <span class="detail-pill-val" style="font-size: 0.85rem;">{{ result.ayanamsa.formatted }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SVG Chart -->
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <span>🔯</span>
+              <span>लग्न कुंडली चक्र</span>
+            </h3>
+          </div>
+          <div class="kundli-chart-wrapper">
+            {{ result.chart_svg | safe }}
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Educational Guide: Lagna Kaise Nikale -->
+    <section class="educational-section print-hide">
+      <h2>लग्न कैसे निकाले (Lagna Kaise Nikale) - संपूर्ण मार्गदर्शिका</h2>
+      <p style="color: var(--text-secondary);">
+        वैदिक ज्योतिष में लग्न निकालने का गणितीय और खगोलीय आधार:
+      </p>
+
+      <div class="edu-grid">
+        <article class="edu-box">
+          <h3><span>🧭</span> १. स्थानीय नाक्षत्र समय (Local Sidereal Time)</h3>
+          <p>
+            पृथ्वी पश्चिम से पूर्व दिशा में अपनी धुरी पर घूमती है। किसी भी स्थान पर जिस समय कोई जातक जन्म लेता है, उस समय ग्रीनविच समय और स्थानीय देशांतर के अंतर के आधार पर स्थानीय नाक्षत्र समय (RAMC) निकाला जाता है।
+          </p>
+        </article>
+
+        <article class="edu-box">
+          <h3><span>📐</span> २. अक्षांश और पूर्वी क्षितिज का कोण</h3>
+          <p>
+            नाक्षत्र समय और जन्म स्थान के सटीक अक्षांश से पूर्वी क्षितिज पर क्रांतिवृत्त का स्पर्श बिंदु ज्ञात किया जाता है। यही सायन लग्न (Tropical Ascendant) होता है।
+          </p>
+        </article>
+
+        <article class="edu-box">
+          <h3><span>⚖️</span> ३. लाहिड़ी अयनांश का शोधन</h3>
+          <p>
+            सायन लग्न में से वर्तमान समय का लाहिड़ी अयनांश (लगभग २३° से २४° के मध्य) घटाने पर वास्तविक निरयण जन्म लग्न स्पष्ट (Sidereal Lagna) प्राप्त होता है, जो जातक की वास्तविक वैदिक लग्न राशि बनता है।
+          </p>
+        </article>
+
+        <article class="edu-box">
+          <h3><span>🌟</span> ४. लग्न का जीवन में महत्व</h3>
+          <p>
+            लग्न कुंडली का प्रथम भाव है। यह व्यक्ति की शारीरिक संरचना, स्वास्थ्य, आत्मबल, निर्णय क्षमता और समग्र जीवन शक्ति का प्रतिनिधित्व करता है। यदि लग्नेश कुंडली में शुभ व बलवान हो, तो जीवन में निरंतर प्रगति होती है।
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p style="font-weight: 600; color: #FFFFFF;">वैदिक जन्म कुंडली (Vedic Kundali Portal)</p>
+      <p class="footer-copy">
+        <a href="/" style="color:#FFD97D; margin-right: 15px;">जन्म कुंडली</a>
+        <a href="/matching" style="color:#FFD97D; margin-right: 15px;">कुंडली मिलान</a>
+        <a href="/lagna-calculator" style="color:#FFD97D; margin-right: 15px;">लग्न कैलकुलेटर</a>
+        <a href="/vimshottari-dasha" style="color:#FFD97D; margin-right: 15px;">विंशोत्तरी दशा</a>
+        <a href="/nakshatra-calculator" style="color:#FFD97D; margin-right: 15px;">नक्षत्र खोजें</a>
+        <a href="/manglik-dosh" style="color:#FFD97D; margin-right: 15px;">मांगलिक दोष</a>
+        <a href="/sade-sati" style="color:#FFD97D; margin-right: 15px;">साढ़े साती</a>
+        <a href="/panchang" style="color:#FFD97D;">पंचांग</a><br><br>
+        &copy; 2026 वैदिक जन्म कुंडली | AGPL-3.0 Ephemeris Compliance
+      </p>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

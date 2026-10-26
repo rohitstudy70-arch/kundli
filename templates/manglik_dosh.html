@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO: Title & Meta Description with Target Keywords -->
+  <title>मांगलिक दोष कैलकुलेटर: Manglik Dosh | Free Kundali</title>
+  <meta name="description" content="मांगलिक दोष (Manglik Dosh) कैलकुलेटर हिंदी में। Janam Kundali Hindi Mein लग्न व चंद्र से मंगल की स्थिति, परिहार व तार्किक विश्लेषण। Free Kundali सेवा।">
+  <meta name="keywords" content="manglik dosh, मांगलिक दोष, janam kundali hindi mein, free kundali, astrosage kundli, kundali matching, manglik calculator hindi">
+  <meta name="author" content="Vedic Kundali">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="http://127.0.0.1:5000/manglik-dosh">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="मांगलिक दोष कैलकुलेटर: Manglik Dosh | Free Kundali">
+  <meta property="og:description" content="जन्म तिथि और समय से जानिए अपनी पत्रिका में मंगल की वास्तविक स्थिति और शास्त्रीय परिहार।">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://127.0.0.1:5000/manglik-dosh">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <!-- JSON-LD FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "मांगलिक दोष (Manglik Dosh) क्या होता है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "वैदिक ज्योतिष के अनुसार जब जन्म पत्रिका में लग्न अथवा चंद्र से प्रथम, चतुर्थ, सप्तम, अष्टम या द्वादश (12वें) भाव में मंगल ग्रह स्थित होता है, तो उसे मांगलिक योग कहा जाता है। यह योग व्यक्ति में अदम्य ऊर्जा, साहस और स्पष्टवादिता का सूचक है, न कि किसी दुर्भाग्य का।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "क्या मांगलिक दोष का भय वास्तविक है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "नहीं, समाज में मांगलिक दोष को लेकर फैलाया गया भय निराधार है। शास्त्रों में 20 से अधिक परिहार (Cancellations) दिए गए हैं। जैसे यदि मंगल अपनी स्वराशि (मेष, वृश्चिक) या उच्च राशि (मकर) में हो, या गुरु की दृष्टि हो, तो दोष स्वतः समाप्त हो जाता है।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "क्या मांगलिक व्यक्ति का विवाह केवल मांगलिक से ही हो सकता है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "नहीं, ऐसा आवश्यक नहीं है। यदि वर या वधू की कुंडली में ग्रहों का सामंजस्य अच्छा हो, सप्तम भाव व सप्तमेश शुभ स्थिति में हों अथवा परिहार लागू हो, तो मांगलिक और गैर-मांगलिक का विवाह भी सुखद और सफल रहता है।"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <nav class="main-navbar print-hide" aria-label="मुख्य नेविगेशन बार">
+    <div class="navbar-container">
+      <a href="/" class="navbar-brand">
+        <span class="brand-om">ॐ</span>
+        <span data-i18n="brand_title">वैदिक जन्म कुंडली</span>
+      </a>
+
+      <!-- Desktop & Mobile Links -->
+      <ul class="navbar-menu" id="navbarMenu">
+        <li><a href="/" class="navbar-link" data-i18n="nav_kundli">📜 जन्म कुंडली</a></li>
+        <li><a href="/matching" class="navbar-link" data-i18n="nav_matching">💍 कुंडली मिलान</a></li>
+        <li><a href="/lagna-calculator" class="navbar-link" data-i18n="nav_lagna">🌅 लग्न</a></li>
+        <li><a href="/vimshottari-dasha" class="navbar-link" data-i18n="nav_dasha">⌛ महादशा</a></li>
+        <li><a href="/nakshatra-calculator" class="navbar-link" data-i18n="nav_nakshatra">✨ नक्षत्र</a></li>
+        <li><a href="/manglik-dosh" class="navbar-link active" data-i18n="nav_manglik">🔥 मांगलिक दोष</a></li>
+        <li><a href="/sade-sati" class="navbar-link" data-i18n="nav_sade_sati">🪐 साढ़े साती</a></li>
+        <li><a href="/panchang" class="navbar-link" data-i18n="nav_panchang">📅 पंचांग</a></li>
+      </ul>
+
+      <!-- Right Actions: Language Switcher + Mobile Toggle -->
+      <div class="navbar-actions">
+        <div class="nav-lang-switch">
+          <button type="button" class="nav-lang-btn active" data-set-lang="hi">HI</button>
+          <button type="button" class="nav-lang-btn" data-set-lang="en">EN</button>
+        </div>
+        <button type="button" class="navbar-toggle" id="navbarToggle" aria-label="मेन्यू खोलें">
+          ☰
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-badge">
+        <span>🔥</span>
+        <span>वैदिक मंगल विचार एवं शास्त्रीय परिहार कैलकुलेटर</span>
+      </div>
+      <h1 class="site-title">मांगलिक दोष कैलकुलेटर (Manglik Dosh Vichar)</h1>
+      <p class="site-tagline">लाहिड़ी अयनांश पर आधारित मंगल की स्थिति, भाव फल व शास्त्रीय दोष परिहार का प्रामाणिक विश्लेषण</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="app-layout">
+      <!-- Input Form -->
+      <section class="card print-hide">
+        <div class="card-header">
+          <h2 class="card-title" style="margin: 0;">
+            <span>🔥</span>
+            <span>मांगलिक स्थिति जानने हेतु जन्म विवरण</span>
+          </h2>
+        </div>
+        <div class="card-body">
+          <form id="manglik-form" novalidate>
+            <div class="form-group">
+              <label for="m-name" class="form-label">नाम (वैकल्पिक)</label>
+              <input type="text" id="m-name" class="form-control" value="रोहित कुमार" placeholder="उदा. राहुल शर्मा">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="m-birth-date" class="form-label required">जन्म तिथि</label>
+                <input type="date" id="m-birth-date" class="form-control" value="1995-05-15" required>
+              </div>
+              <div class="form-group">
+                <label for="m-birth-time" class="form-label required">जन्म समय</label>
+                <input type="time" id="m-birth-time" class="form-control" step="1" value="10:30:00" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="m-place-search" class="form-label required">जन्म स्थान</label>
+              <div class="autocomplete-wrapper">
+                <input type="text" id="m-place-search" class="form-control" value="नई दिल्ली, भारत (New Delhi, India)" placeholder="शहर या जिले का नाम टाइप करें..." autocomplete="off" required>
+                <div id="m-place-spinner" class="spinner-sm hidden"></div>
+                <div id="m-place-suggestions" class="suggestions-dropdown hidden" role="listbox"></div>
+              </div>
+              <span class="form-hint">ओपनस्ट्रीटमैप द्वारा सटीक अक्षांश, देशांतर व टाइमज़ोन स्वतः भर जाएगा।</span>
+            </div>
+
+            <input type="hidden" id="m-latitude" value="28.6139">
+            <input type="hidden" id="m-longitude" value="77.2090">
+            <input type="hidden" id="m-timezone" value="Asia/Kolkata">
+
+            <div id="m-error-msg" class="error-banner hidden" role="alert"></div>
+
+            <button type="submit" id="m-submit-btn" class="btn btn-primary btn-block" style="margin-top: 1rem;">
+              <span>🔥</span>
+              <span>मांगलिक दोष व परिहार की गणना करें</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Results Display -->
+      <section class="card" id="manglik-result-card">
+        <div class="card-header">
+          <h2 class="card-title" style="margin: 0;">
+            <span>🛡️</span>
+            <span>वैदिक मांगलिक विचार परिणाम</span>
+          </h2>
+        </div>
+        <div class="card-body">
+          <div id="m-loading-state" class="hidden" style="text-align: center; padding: 2rem;">
+            <div class="spinner-sm" style="margin: 0 auto 1rem; width: 36px; height: 36px;"></div>
+            <p style="color: var(--color-ink-muted);">स्विस एफेमेरिस द्वारा ग्रहों व भावों की गणना हो रही है...</p>
+          </div>
+
+          <div id="m-content-display">
+            <!-- Dynamic Result Card -->
+            <div id="m-status-box" style="padding: 1.25rem; border-radius: 8px; margin-bottom: 1.5rem; background: var(--color-bg-warm); border-left: 5px solid var(--color-primary);">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <h3 id="m-status-title" style="margin: 0; font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-primary);">
+                  मांगलिक स्थिति: गणना की जा रही है...
+                </h3>
+                <span id="m-status-badge" style="display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px; font-weight: 600; font-size: 0.85rem; background: var(--color-gold); color: #fff;">
+                  जांच प्रगति पर
+                </span>
+              </div>
+              <p id="m-status-desc" style="margin: 0; color: var(--color-ink-muted); line-height: 1.6;">
+                कृपया प्रतीक्षा करें अथवा नया विवरण दर्ज कर गणना करें।
+              </p>
+            </div>
+
+            <!-- Planetary Details Table -->
+            <h4 style="font-family: var(--font-heading); color: var(--color-ink); margin-bottom: 0.75rem;">
+              मंगल ग्रह एवं सप्तम भाव स्थिति
+            </h4>
+            <div class="table-container" style="margin-bottom: 1.5rem;">
+              <table class="data-table" id="m-details-table">
+                <thead>
+                  <tr>
+                    <th>कारक</th>
+                    <th>स्थिति / राशि</th>
+                    <th>भाव (House)</th>
+                    <th>अंश (Degree)</th>
+                    <th>मांगलिक प्रभाव</th>
+                  </tr>
+                </thead>
+                <tbody id="m-details-tbody">
+                  <!-- Filled via JS -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Parihara Box -->
+            <div style="background: #FFFDF9; border: 1px solid var(--color-border); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.5rem;">
+              <h4 style="font-family: var(--font-heading); color: var(--color-accent-terracotta); margin-top: 0; margin-bottom: 0.5rem;">
+                📜 शास्त्रीय परिहार (Manglik Dosha Cancellations)
+              </h4>
+              <ul id="m-parihara-list" style="margin: 0; padding-left: 1.25rem; line-height: 1.7; color: var(--color-ink);">
+                <!-- Filled via JS -->
+              </ul>
+            </div>
+
+            <!-- Chart SVG -->
+            <h4 style="font-family: var(--font-heading); color: var(--color-ink); margin-bottom: 0.5rem;">
+              लग्न चक्र (मंगल स्थिति)
+            </h4>
+            <div id="m-chart-container" style="max-width: 440px; margin: 0 auto 1.5rem; text-align: center;"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Educational Pillars -->
+    <section class="card" style="margin-top: 2rem;">
+      <div class="card-header">
+        <h2 class="card-title" style="margin: 0;">
+          <span>📖</span>
+          <span>मांगलिक विचार: वैदिक शास्त्र और वैज्ञानिक विवेक</span>
+        </h2>
+      </div>
+      <div class="card-body">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <div>
+            <h3 style="font-family: var(--font-heading); color: var(--color-primary); font-size: 1.15rem;">
+              मांगलिक दोष क्या है?
+            </h3>
+            <p style="line-height: 1.7; color: var(--color-ink-muted);">
+              ज्योतिष शास्त्र के अनुसार मंगल शौर्य, पराक्रम, ऊर्जा और दृढ़ निश्चय का ग्रह है। जब मंगल लग्न से १, ४, ७, ८ या १२वें भाव में बैठता है, तो जातक में स्वभावगत तीव्रता और तेजस्विता अधिक होती है। इसे वैवाहिक संदर्भ में मंगल दोष कहा गया है, क्योंकि दांपत्य में धैर्य, समझौता और आपसी सम्मान की आवश्यकता होती है। यह कोई अभिशाप नहीं, केवल ऊर्जा संतुलन का विषय है।
+            </p>
+          </div>
+
+          <div>
+            <h3 style="font-family: var(--font-heading); color: var(--color-primary); font-size: 1.15rem;">
+              शास्त्रीय परिहार के नियम
+            </h3>
+            <p style="line-height: 1.7; color: var(--color-ink-muted);">
+              महर्षि पराशर एवं फलदीपिका के अनुसार यदि मंगल मेष, वृश्चिक (स्वराशि) या मकर (उच्च) में हो, तो मंगल दोष निष्फल हो जाता है। इसके अतिरिक्त यदि गुरु की दृष्टि मंगल पर हो, या केंद्र में गुरु व शुक्र बलवान हों, तो मांगलिक दोष स्वतः समाप्त हो जाता है। जातक की आयु २८ वर्ष पूर्ण होने पर भी मंगल की उग्रता शांत हो जाती है।
+            </p>
+          </div>
+
+          <div>
+            <h3 style="font-family: var(--font-heading); color: var(--color-primary); font-size: 1.15rem;">
+              भय-मुक्त विवेकपूर्ण दृष्टिकोण
+            </h3>
+            <p style="line-height: 1.7; color: var(--color-ink-muted);">
+              आज के समाज में मांगलिक दोष के नाम पर भय फैलाकर अनावश्यक अनुष्ठान और रत्न बेचना अनुचित है। दांपत्य जीवन का आधार परस्पर प्रेम, समझदारी, आर्थिक स्थिरता और भावनात्मक परिपक्वता है। ज्योतिष को केवल आत्म-सुधार और स्वभाव संतुलन का मार्गदर्शक साधन समझना चाहिए, भय का कारण नहीं।
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3 class="footer-col-title">वैदिक जन्म कुंडली</h3>
+          <p class="footer-desc">
+            प्राचीन भारतीय ज्योतिष के खगोलीय सिद्धांतों और स्विस एफेमेरिस की सूक्ष्म गणनाओं पर आधारित नि:शुल्क सेवा।
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">महत्वपूर्ण लिंक</h3>
+          <ul class="footer-links">
+            <li><a href="/">जन्म कुंडली (Kundli)</a></li>
+            <li><a href="/matching">कुंडली मिलान (Matching)</a></li>
+            <li><a href="/lagna-calculator">लग्न कैलकुलेटर (Lagna)</a></li>
+            <li><a href="/vimshottari-dasha">विंशोत्तरी महादशा (Dasha)</a></li>
+            <li><a href="/nakshatra-calculator">नक्षत्र कैलकुलेटर (Nakshatra)</a></li>
+            <li><a href="/manglik-dosh">मांगलिक दोष कैलकुलेटर</a></li>
+            <li><a href="/sade-sati">शनि साढ़े साती</a></li>
+            <li><a href="/panchang">दैनिक पंचांग (Panchang)</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">नीति एवं नियम</h3>
+          <ul class="footer-links">
+            <li><a href="/about">हमारे बारे में (About)</a></li>
+            <li><a href="/privacy">गोपनीयता नीति (Privacy)</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          © 2026 वैदिक जन्म कुंडली (Vedic Kundali). सर्वाधिकार सुरक्षित।
+        </p>
+        <p class="footer-license">
+          Ephemeris data powered by Swiss Ephemeris under AGPL-3.0 License.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Logic for Manglik evaluation
+    const form = document.getElementById("manglik-form");
+    const placeInput = document.getElementById("m-place-search");
+    const placeDropdown = document.getElementById("m-place-suggestions");
+    const placeSpinner = document.getElementById("m-place-spinner");
+    let searchTimer = null;
+
+    // Nominatim autocomplete
+    placeInput.addEventListener("input", function() {
+      const q = this.value.trim();
+      clearTimeout(searchTimer);
+      if (q.length < 2) {
+        placeDropdown.classList.add("hidden");
+        return;
+      }
+      searchTimer = setTimeout(() => {
+        placeSpinner.classList.remove("hidden");
+        fetch(`/api/search-place?q=${encodeURIComponent(q)}`)
+          .then(r => r.json())
+          .then(places => {
+            placeSpinner.classList.add("hidden");
+            placeDropdown.innerHTML = "";
+            if (!places || places.length === 0) {
+              placeDropdown.classList.add("hidden");
+              return;
+            }
+            places.forEach(p => {
+              const div = document.createElement("div");
+              div.className = "suggestion-item";
+              div.textContent = p.name;
+              div.addEventListener("click", () => {
+                placeInput.value = p.name;
+                document.getElementById("m-latitude").value = p.lat;
+                document.getElementById("m-longitude").value = p.lon;
+                document.getElementById("m-timezone").value = p.timezone || "Asia/Kolkata";
+                placeDropdown.classList.add("hidden");
+              });
+              placeDropdown.appendChild(div);
+            });
+            placeDropdown.classList.remove("hidden");
+          })
+          .catch(() => {
+            placeSpinner.classList.add("hidden");
+            placeDropdown.classList.add("hidden");
+          });
+      }, 350);
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!placeInput.contains(e.target) && !placeDropdown.contains(e.target)) {
+        placeDropdown.classList.add("hidden");
+      }
+    });
+
+    function calculateManglik() {
+      const bDate = document.getElementById("m-birth-date").value;
+      const bTime = document.getElementById("m-birth-time").value;
+      const lat = document.getElementById("m-latitude").value;
+      const lon = document.getElementById("m-longitude").value;
+      const tz = document.getElementById("m-timezone").value;
+      const name = document.getElementById("m-name").value || "जातक";
+      const place = placeInput.value;
+
+      const errBox = document.getElementById("m-error-msg");
+      errBox.classList.add("hidden");
+
+      document.getElementById("m-loading-state").classList.remove("hidden");
+      document.getElementById("m-content-display").classList.add("hidden");
+
+      fetch("/api/calculate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name,
+          gender: "पुरुष",
+          birth_date: bDate,
+          birth_time: bTime,
+          latitude: lat,
+          longitude: lon,
+          timezone: tz,
+          place_name: place
+        })
+      })
+      .then(r => r.json())
+      .then(res => {
+        document.getElementById("m-loading-state").classList.add("hidden");
+        document.getElementById("m-content-display").classList.remove("hidden");
+
+        if (!res.success) {
+          errBox.textContent = res.message || "त्रुटि हुई।";
+          errBox.classList.remove("hidden");
+          return;
+        }
+
+        const data = res.data;
+        renderManglikResults(data);
+      })
+      .catch(err => {
+        document.getElementById("m-loading-state").classList.add("hidden");
+        document.getElementById("m-content-display").classList.remove("hidden");
+        errBox.textContent = "सर्वर से संपर्क करने में त्रुटि: " + err;
+        errBox.classList.remove("hidden");
+      });
+    }
+
+    function renderManglikResults(data) {
+      // Find Mars and Moon in grahas
+      const mars = data.grahas.find(g => (g.id || "").toLowerCase() === "mars");
+      const moon = data.grahas.find(g => (g.id || "").toLowerCase() === "moon");
+      const jupiter = data.grahas.find(g => (g.id || "").toLowerCase() === "jupiter");
+      const lagnaRashiId = data.lagna.rashi.id;
+
+      const marsHouseLagna = mars ? (mars.house_num || mars.house || 1) : 1;
+      const marsRashiId = mars ? mars.rashi.id : 1;
+      const moonHouse = moon ? (moon.house_num || moon.house || 1) : 1;
+      
+      // Mars house from Moon
+      const marsHouseMoon = mars && moon ? ((marsHouseLagna - moonHouse + 12) % 12 || 12) : 1;
+
+      const manglikHouses = [1, 4, 7, 8, 12];
+      const isManglikFromLagna = manglikHouses.includes(marsHouseLagna);
+      const isManglikFromMoon = manglikHouses.includes(marsHouseMoon);
+
+      // Pariharas
+      const pariharas = [];
+      let isExempt = false;
+
+      // 1. Mars in Aries or Scorpio (own sign) or Capricorn (exalted)
+      if (marsRashiId === 1 || marsRashiId === 8) {
+        pariharas.push("मंगल स्वराशि (मेष/वृश्चिक) में स्थित है — 'स्वक्षेत्रे कुज दोषो न'।");
+        isExempt = true;
+      } else if (marsRashiId === 10) {
+        pariharas.push("मंगल उच्च राशि (मकर) में स्थित है — उच्च का मंगल दोषमुक्त माना गया है।");
+        isExempt = true;
+      }
+
+      // 2. Jupiter aspect or conjunct
+      if (jupiter) {
+        const jupHouse = jupiter.house_num || jupiter.house || 1;
+        const distFromJup = (marsHouseLagna - jupHouse + 12) % 12;
+        // Jupiter aspects 5th, 7th, 9th, or conjunct (0)
+        if (distFromJup === 0 || distFromJup === 4 || distFromJup === 6 || distFromJup === 8) {
+          pariharas.push("देवगुरु बृहस्पति की मंगल पर शुभ दृष्टि अथवा युति है, जो मंगल की उग्रता को शांत करती है।");
+          isExempt = true;
+        }
+      }
+
+      // 3. 28+ years of age general parihara
+      pariharas.push("सामान्य वैदिक सिद्धांत: २८ वर्ष की आयु के पश्चात मंगल ग्रह की नैसर्गिक उत्तेजना स्वतः परिपक्वता में बदल जाती है।");
+
+      // Set Status
+      const statusTitle = document.getElementById("m-status-title");
+      const statusBadge = document.getElementById("m-status-badge");
+      const statusDesc = document.getElementById("m-status-desc");
+
+      if (!isManglikFromLagna && !isManglikFromMoon) {
+        statusTitle.textContent = "मांगलिक स्थिति: अनामांगलिक (मांगलिक दोष नहीं है)";
+        statusBadge.textContent = "दोष मुक्त";
+        statusBadge.style.background = "#2E7D32";
+        statusDesc.textContent = `आपकी जन्म कुंडली में मंगल लग्न से ${marsHouseLagna}वें भाव तथा चंद्र से ${marsHouseMoon}वें भाव में स्थित है। यह १, ४, ७, ८, १२ भावों से बाहर है, अतः आपकी कुंडली में मांगलिक दोष नहीं है।`;
+      } else if (isExempt) {
+        statusTitle.textContent = "मांगलिक स्थिति: मांगलिक योग (शास्त्रीय परिहार प्रभावी)";
+        statusBadge.textContent = "परिहार लागू (दोष शांत)";
+        statusBadge.style.background = "#0D828A";
+        statusDesc.textContent = `आपकी जन्म कुंडली में मंगल ${marsHouseLagna}वें भाव में है, किंतु शुभ ग्रहों की दृष्टि अथवा अनुकूल राशि स्थिति के कारण शास्त्रीय परिहार लागू है। दांपत्य जीवन के लिए यह पूर्णतः सुरक्षित व सामान्य है।`;
+      } else if (isManglikFromLagna) {
+        statusTitle.textContent = "मांगलिक स्थिति: लग्न से मांगलिक";
+        statusBadge.textContent = "सक्रिय मांगलिक योग";
+        statusBadge.style.background = "#C62828";
+        statusDesc.textContent = `आपकी जन्म कुंडली में मंगल लग्न से ${marsHouseLagna}वें भाव में स्थित है। यह जातक में दृढ़ इच्छाशक्ति, ऊर्जा और आत्म-सम्मान की प्रधानता दर्शाता है।`;
+      } else {
+        statusTitle.textContent = "मांगलिक स्थिति: चंद्र मांगलिक (आंशिक)";
+        statusBadge.textContent = "आंशिक मांगलिक";
+        statusBadge.style.background = "#C57B12";
+        statusDesc.textContent = `आपकी जन्म कुंडली में मंगल चंद्र से ${marsHouseMoon}वें भाव में स्थित है। यह आंशिक मांगलिक प्रभाव कहलाता है।`;
+      }
+
+      // Fill Table
+      const tbody = document.getElementById("m-details-tbody");
+      const marsDegStr = mars ? (mars.deg_in_rashi_short || mars.dms_str || "") : "-";
+      tbody.innerHTML = `
+        <tr>
+          <td><strong>मंगल (Lagna Se)</strong></td>
+          <td>${mars ? mars.rashi.name_hi : "-"}</td>
+          <td>${marsHouseLagna}वां भाव</td>
+          <td>${marsDegStr} ${mars && mars.is_retrograde ? '(व)' : ''}</td>
+          <td>${isManglikFromLagna ? 'मांगलिक भाव (१, ४, ७, ८, १२)' : 'सामान्य भाव'}</td>
+        </tr>
+        <tr>
+          <td><strong>मंगल (Moon Se)</strong></td>
+          <td>${mars ? mars.rashi.name_hi : "-"}</td>
+          <td>${marsHouseMoon}वां भाव</td>
+          <td>${marsDegStr}</td>
+          <td>${isManglikFromMoon ? 'चंद्र मांगलिक भाव' : 'सामान्य भाव'}</td>
+        </tr>
+        <tr>
+          <td><strong>सप्तम भाव (विवाह भाव)</strong></td>
+          <td>${data.houses[6].rashi.name_hi}</td>
+          <td>७वां भाव</td>
+          <td>स्वामी: ${data.houses[6].rashi.lord_hi}</td>
+          <td>विवाह व दांपत्य सुख का मुख्य केंद्र</td>
+        </tr>
+      `;
+
+      // Fill Parihara List
+      const pariharaList = document.getElementById("m-parihara-list");
+      pariharaList.innerHTML = "";
+      pariharas.forEach(p => {
+        const li = document.createElement("li");
+        li.textContent = p;
+        pariharaList.appendChild(li);
+      });
+
+      // SVG Chart
+      document.getElementById("m-chart-container").innerHTML = data.chart_svg;
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      calculateManglik();
+    });
+
+    // Auto-calculate on initial load
+    window.addEventListener("DOMContentLoaded", calculateManglik);
+  </script>
+</body>
+</html>

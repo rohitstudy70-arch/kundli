@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>हमारे बारे में - वैदिक जन्म कुंडली | प्रामाणिक खगोलीय गणना</title>
+  <meta name="description" content="वैदिक जन्म कुंडली परियोजना का परिचय। शुद्ध खगोलीय गणना, स्विस एफिमेरिस, शून्य भय-व्यापार और प्राचीन भारतीय ज्योतिष विज्ञान का संगम।">
+  <link rel="canonical" href="http://127.0.0.1:5000/about">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <nav class="main-navbar print-hide" aria-label="मुख्य नेविगेशन बार">
+    <div class="navbar-container">
+      <a href="/" class="navbar-brand">
+        <span class="brand-om">ॐ</span>
+        <span data-i18n="brand_title">वैदिक जन्म कुंडली</span>
+      </a>
+
+      <!-- Desktop & Mobile Links -->
+      <ul class="navbar-menu" id="navbarMenu">
+        <li><a href="/" class="navbar-link" data-i18n="nav_kundli">📜 जन्म कुंडली</a></li>
+        <li><a href="/matching" class="navbar-link" data-i18n="nav_matching">💍 कुंडली मिलान</a></li>
+        <li><a href="/lagna-calculator" class="navbar-link" data-i18n="nav_lagna">🌅 लग्न</a></li>
+        <li><a href="/vimshottari-dasha" class="navbar-link" data-i18n="nav_dasha">⌛ महादशा</a></li>
+        <li><a href="/nakshatra-calculator" class="navbar-link" data-i18n="nav_nakshatra">✨ नक्षत्र</a></li>
+        <li><a href="/manglik-dosh" class="navbar-link" data-i18n="nav_manglik">🔥 मांगलिक दोष</a></li>
+        <li><a href="/sade-sati" class="navbar-link" data-i18n="nav_sade_sati">🪐 साढ़े साती</a></li>
+        <li><a href="/panchang" class="navbar-link" data-i18n="nav_panchang">📅 पंचांग</a></li>
+      </ul>
+
+      <!-- Right Actions: Language Switcher + Mobile Toggle -->
+      <div class="navbar-actions">
+        <div class="nav-lang-switch">
+          <button type="button" class="nav-lang-btn active" data-set-lang="hi">HI</button>
+          <button type="button" class="nav-lang-btn" data-set-lang="en">EN</button>
+        </div>
+        <button type="button" class="navbar-toggle" id="navbarToggle" aria-label="मेन्यू खोलें">
+          ☰
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-badge">
+        <span>ॐ</span>
+        <span>शुद्ध वैदिक गणित</span>
+      </div>
+      <h1 class="site-title">हमारे बारे में (About Us)</h1>
+      <p class="site-tagline">पारंपरिक वैदिक सिद्धांत और आधुनिक खगोलीय गणित का पारदर्शी संगम</p>
+    </div>
+  </header>
+
+  <main class="container" style="max-width: 860px; margin-top: 1.5rem; margin-bottom: 2.5rem;">
+    <div style="margin-bottom: 1.25rem;">
+      <a href="/" class="btn btn-secondary" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.5rem 1rem; font-size: 0.9rem;">
+        <span>← मुख्य पृष्ठ पर लौटें (Home)</span>
+      </a>
+    </div>
+
+    <article class="card" style="padding: 2rem;">
+      <h2 style="margin-top: 0;">हमारा उद्देश्य एवं दृष्टिकोण</h2>
+      <p>
+        <strong>वैदिक जन्म कुंडली (Vedic Kundali)</strong> का निर्माण भारतीय ज्योतिषीय गणित को उसके मूल, शुद्ध और वैज्ञानिक स्वरूप में प्रस्तुत करने के लिए किया गया है। आज इंटरनेट पर अधिकांश ज्योतिष वेबसाइटें भय दिखाने (Fear-mongering), काल सर्प दोष, मांगलिक दोष का हौव्वा खड़ा करने तथा महंगे रत्न, ताबीज या पूजा बेचने के व्यापार में लिप्त हैं। हमने इस विचार को पूरी तरह नकारते हुए एक ऐसा मंच विकसित किया है जो <strong>शून्य भय-व्यापार (Zero Fear-Based Upsell)</strong> के सिद्धांत पर काम करता है।
+      </p>
+
+      <h2>तकनीकी प्रामाणिकता (Technical Accuracy)</h2>
+      <p>
+        ग्रहों की स्थिति की सटीकता ही किसी भी कुंडली की विश्वसनीयता का आधार होती है। हमारी प्रणाली विश्व स्तर पर स्वीकृत <strong>स्विस एफिमेरिस (Swiss Ephemeris / pyswisseph)</strong> का उपयोग करती है। इसके साथ ही, भारत सरकार की कैलेंडर सुधार समिति द्वारा अनुशंसित <strong>लाहिड़ी अयनांश (Lahiri / Chitrapaksha Ayanamsa)</strong> और निरयण (Sidereal) चक्र का प्रयोग किया जाता है।
+      </p>
+      <p>
+        समय की सटीकता के लिए हम पाइथन के आधिकारिक IANA <code>zoneinfo</code> डेटाबेस का उपयोग करते हैं, जिससे स्वतंत्रता पूर्व या भारत के विभिन्न युगों में लागू ऐतिहासिक समय परिवर्तनों (जैसे 1942-1945 के दौरान War Time Daylight Saving +06:30) की सटीक संगणना होती है।
+      </p>
+
+      <h2>हमारा संकल्प (Our Core Pledge)</h2>
+      <ul style="padding-left: 1.5rem; margin-bottom: 1.5rem; line-height: 1.8;">
+        <li><strong>कोई भय-व्यापार नहीं:</strong> हम किसी भी प्रकार का दोष बताकर पूजा, अनुष्ठान या रत्न नहीं बेचते।</li>
+        <li><strong>पूर्ण डेटा गोपनीयता:</strong> आपका जन्म विवरण कहीं भी संग्रहीत (Store) या तीसरे पक्ष को बेचा नहीं जाता। गणना होते ही सत्र समाप्त हो जाता है।</li>
+        <li><strong>मुक्त ज्ञान:</strong> वैदिक ऋषियों की इस अनमोल विद्या को निष्पक्ष और सुलभ रूप से हर जिज्ञासु तक पहुंचाना।</li>
+      </ul>
+
+      <h2>लाइसेंस एवं आभार</h2>
+      <p>
+        यह सॉफ्टवेयर Swiss Ephemeris लाइब्रेरी का उपयोग करता है, जो GNU Affero General Public License (AGPL-3.0) के अंतर्गत आती है। हम ओपन-सोर्स कम्युनिटी और भारतीय खगोल विज्ञान के आचार्यों के प्रति कृतज्ञता व्यक्त करते हैं।
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p style="font-weight: 600; color: #FFFFFF; font-size: 1.05rem;">वैदिक जन्म कुंडली (Vedic Janam Kundali)</p>
+      <p class="footer-copy">
+        <a href="/" style="color:#FFD97D; margin-right: 15px;">मुख्य पृष्ठ</a>
+        <a href="/about" style="color:#FFD97D; margin-right: 15px;">हमारे बारे में</a>
+        <a href="/privacy" style="color:#FFD97D;">गोपनीयता नीति</a><br>
+        &copy; 2026 वैदिक जन्म कुंडली | AGPL-3.0 Ephemeris Compliance
+      </p>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

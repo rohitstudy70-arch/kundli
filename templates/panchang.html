@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO: Title & Meta Description with Target Keywords -->
+  <title>आज का पंचांग: Aaj Ka Panchang | Janam Kundali Hindi Mein</title>
+  <meta name="description" content="आज का पंचांग (Aaj Ka Panchang) हिंदी में। Janam Kundali Hindi Mein दैनिक तिथि, नक्षत्र, योग, करण, राहुकाल व शुभ मुहूर्त जानें। Free Kundali व पंचांग।">
+  <meta name="keywords" content="aaj ka panchang, panchang hindi, आज का पंचांग, दैनिक पंचांग, janam kundali hindi mein, free kundali, tithi nakshatra, astrosage kundli">
+  <meta name="author" content="Vedic Kundali">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="http://127.0.0.1:5000/panchang">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="आज का पंचांग: Aaj Ka Panchang | Janam Kundali Hindi Mein">
+  <meta property="og:description" content="दैनिक वैदिक पंचांग: तिथि, नक्षत्र, योग, करण, राहुकाल और शुभ मुहूर्त की सटीक खगोलीय गणना।">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://127.0.0.1:5000/panchang">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <!-- JSON-LD FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "पंचांग क्या होता है (What is Vedic Panchang)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "पंचांग का शाब्दिक अर्थ है 'पांच अंग'। यह सूर्य और चंद्रमा की खगोलीय स्थिति पर आधारित पांच घटकों का कालदर्शक है: १. तिथि, २. वार, ३. नक्षत्र, ४. योग और ५. करण। इसका उपयोग काल-शुद्धि और प्राकृतिक चक्रों को समझने के लिए होता है।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "राहुकाल क्या होता है और इसमें क्या सावधानी रखनी चाहिए?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "राहुकाल दिन का लगभग डेढ़ घंटे का वह भाग होता है जिसे नए कार्यों के आरंभ के लिए पारंपरिक रूप से त्याज्य माना गया है। यह सूर्योदय से सूर्यास्त के मध्य वार के अनुसार नियमित क्रम में आता है।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "अभिजीत मुहूर्त का क्या महत्व है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "अभिजीत मुहूर्त दोपहर के समय (लगभग 11:45 से 12:35) का कालखंड होता है, जो सूर्य के मध्याह्न से जुड़ा है। इसे अधिकांश शुभ कार्यों के लिए अत्यंत प्रशस्त माना जाता है।"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <nav class="main-navbar print-hide" aria-label="मुख्य नेविगेशन बार">
+    <div class="navbar-container">
+      <a href="/" class="navbar-brand">
+        <span class="brand-om">ॐ</span>
+        <span data-i18n="brand_title">वैदिक जन्म कुंडली</span>
+      </a>
+
+      <!-- Desktop & Mobile Links -->
+      <ul class="navbar-menu" id="navbarMenu">
+        <li><a href="/" class="navbar-link" data-i18n="nav_kundli">📜 जन्म कुंडली</a></li>
+        <li><a href="/matching" class="navbar-link" data-i18n="nav_matching">💍 कुंडली मिलान</a></li>
+        <li><a href="/lagna-calculator" class="navbar-link" data-i18n="nav_lagna">🌅 लग्न</a></li>
+        <li><a href="/vimshottari-dasha" class="navbar-link" data-i18n="nav_dasha">⌛ महादशा</a></li>
+        <li><a href="/nakshatra-calculator" class="navbar-link" data-i18n="nav_nakshatra">✨ नक्षत्र</a></li>
+        <li><a href="/manglik-dosh" class="navbar-link" data-i18n="nav_manglik">🔥 मांगलिक दोष</a></li>
+        <li><a href="/sade-sati" class="navbar-link" data-i18n="nav_sade_sati">🪐 साढ़े साती</a></li>
+        <li><a href="/panchang" class="navbar-link active" data-i18n="nav_panchang">📅 पंचांग</a></li>
+      </ul>
+
+      <!-- Right Actions: Language Switcher + Mobile Toggle -->
+      <div class="navbar-actions">
+        <div class="nav-lang-switch">
+          <button type="button" class="nav-lang-btn active" data-set-lang="hi">HI</button>
+          <button type="button" class="nav-lang-btn" data-set-lang="en">EN</button>
+        </div>
+        <button type="button" class="navbar-toggle" id="navbarToggle" aria-label="मेन्यू खोलें">
+          ☰
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-badge">
+        <span>📅</span>
+        <span>लाहिड़ी अयनांश पर आधारित दैनिक खगोलीय पंचांग</span>
+      </div>
+      <h1 class="site-title">दैनिक वैदिक पंचांग (Aaj Ka Panchang)</h1>
+      <p class="site-tagline">तिथि, वार, नक्षत्र, योग, करण, सूर्योदय-सूर्यास्त व शुभ-अशुभ मुहूर्त का संपूर्ण विवरण</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="app-layout">
+      <!-- Input Card -->
+      <section class="card print-hide">
+        <div class="card-header">
+          <h2 class="card-title" style="margin: 0;">
+            <span>📅</span>
+            <span>पंचांग दिनांक व स्थान चुनें</span>
+          </h2>
+        </div>
+        <div class="card-body">
+          <form id="panchang-form">
+            <div class="form-group">
+              <label for="p-date" class="form-label required">दिनांक (Date)</label>
+              <input type="date" id="p-date" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="p-place-search" class="form-label required">स्थान (Location)</label>
+              <div class="autocomplete-wrapper">
+                <input type="text" id="p-place-search" class="form-control" value="नई दिल्ली, भारत (New Delhi, India)" placeholder="स्थान खोजें..." autocomplete="off" required>
+                <div id="p-place-spinner" class="spinner-sm hidden"></div>
+                <div id="p-place-suggestions" class="suggestions-dropdown hidden" role="listbox"></div>
+              </div>
+              <span class="form-hint">स्थानीय सूर्योदय, सूर्यास्त व मुहूर्त स्थान के अक्षांश/देशांतर पर निर्भर करते हैं।</span>
+            </div>
+
+            <input type="hidden" id="p-latitude" value="28.6139">
+            <input type="hidden" id="p-longitude" value="77.2090">
+            <input type="hidden" id="p-timezone" value="Asia/Kolkata">
+
+            <div id="p-error-banner" class="error-banner hidden" role="alert"></div>
+
+            <button type="submit" class="btn btn-primary btn-block" style="margin-top: 1rem;">
+              <span>📅</span>
+              <span>पंचांग देखें (Aaj Ka Panchang)</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Results Display -->
+      <section class="card" id="panchang-result-card">
+        <div class="card-header">
+          <h2 class="card-title" style="margin: 0;">
+            <span>🕉️</span>
+            <span>दैनिक पंचांग विवरण</span>
+          </h2>
+        </div>
+        <div class="card-body">
+          <div id="p-loading" class="hidden" style="text-align: center; padding: 2rem;">
+            <div class="spinner-sm" style="margin: 0 auto 1rem; width: 36px; height: 36px;"></div>
+            <p style="color: var(--color-ink-muted);">सूर्य व चंद्र की खगोलीय गणना जारी है...</p>
+          </div>
+
+          <div id="p-content">
+            <!-- Hero Date & Tithi Banner -->
+            <div style="padding: 1.25rem; border-radius: 8px; margin-bottom: 1.5rem; background: var(--color-bg-warm); border-left: 5px solid var(--color-primary);">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.25rem;">
+                <h3 id="p-hero-date" style="margin: 0; font-family: var(--font-heading); font-size: 1.3rem; color: var(--color-primary);">
+                  -
+                </h3>
+                <span id="p-hero-weekday" style="display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px; font-weight: 600; font-size: 0.85rem; background: var(--color-gold); color: #fff;">
+                  -
+                </span>
+              </div>
+              <p id="p-hero-tithi" style="margin: 0; font-size: 1.05rem; font-weight: 600; color: var(--color-accent-terracotta);">
+                -
+              </p>
+            </div>
+
+            <!-- Panchang 5 Organs Grid -->
+            <h4 style="font-family: var(--font-heading); color: var(--color-ink); margin-bottom: 0.75rem;">
+              पंचांग के पांच मुख्य अंग
+            </h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem;">
+              <div style="background: #FFFDF9; border: 1px solid var(--color-border); border-radius: 6px; padding: 0.85rem; text-align: center;">
+                <span style="font-size: 0.8rem; color: var(--color-ink-muted); display: block;">१. तिथि</span>
+                <strong id="p-organ-tithi" style="font-size: 1rem; color: var(--color-primary); display: block; margin-top: 0.25rem;">-</strong>
+              </div>
+              <div style="background: #FFFDF9; border: 1px solid var(--color-border); border-radius: 6px; padding: 0.85rem; text-align: center;">
+                <span style="font-size: 0.8rem; color: var(--color-ink-muted); display: block;">२. वार</span>
+                <strong id="p-organ-vara" style="font-size: 1rem; color: var(--color-primary); display: block; margin-top: 0.25rem;">-</strong>
+              </div>
+              <div style="background: #FFFDF9; border: 1px solid var(--color-border); border-radius: 6px; padding: 0.85rem; text-align: center;">
+                <span style="font-size: 0.8rem; color: var(--color-ink-muted); display: block;">३. नक्षत्र</span>
+                <strong id="p-organ-nakshatra" style="font-size: 1rem; color: var(--color-primary); display: block; margin-top: 0.25rem;">-</strong>
+              </div>
+              <div style="background: #FFFDF9; border: 1px solid var(--color-border); border-radius: 6px; padding: 0.85rem; text-align: center;">
+                <span style="font-size: 0.8rem; color: var(--color-ink-muted); display: block;">४. योग</span>
+                <strong id="p-organ-yoga" style="font-size: 1rem; color: var(--color-primary); display: block; margin-top: 0.25rem;">-</strong>
+              </div>
+              <div style="background: #FFFDF9; border: 1px solid var(--color-border); border-radius: 6px; padding: 0.85rem; text-align: center;">
+                <span style="font-size: 0.8rem; color: var(--color-ink-muted); display: block;">५. करण</span>
+                <strong id="p-organ-karana" style="font-size: 1rem; color: var(--color-primary); display: block; margin-top: 0.25rem;">-</strong>
+              </div>
+            </div>
+
+            <!-- Solar / Lunar & Muhurat Table -->
+            <h4 style="font-family: var(--font-heading); color: var(--color-ink); margin-bottom: 0.75rem;">
+              सूर्य, चंद्र व मुहूर्त समय
+            </h4>
+            <div class="table-container">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>काल / मुहूर्त</th>
+                    <th>समय / स्थिति</th>
+                    <th>महत्व</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>सूर्योदय / सूर्यास्त</strong></td>
+                    <td id="p-sun-time">-</td>
+                    <td>दिनमान व रात्रिमान का आधार</td>
+                  </tr>
+                  <tr>
+                    <td><strong>सूर्य राशि</strong></td>
+                    <td id="p-sun-rashi" style="font-weight: 600;">-</td>
+                    <td>सौर मास का निर्धारण</td>
+                  </tr>
+                  <tr>
+                    <td><strong>चंद्र राशि</strong></td>
+                    <td id="p-moon-rashi" style="font-weight: 600; color: var(--color-primary);">-</td>
+                    <td>दैनिक गोचर का केंद्र</td>
+                  </tr>
+                  <tr>
+                    <td><strong>राहुकाल (त्याज्य काल)</strong></td>
+                    <td id="p-rahukaal" style="color: #C62828; font-weight: 600;">-</td>
+                    <td>नया कार्य आरंभ न करने का पारंपरिक समय</td>
+                  </tr>
+                  <tr>
+                    <td><strong>अभिजीत मुहूर्त (शुभ काल)</strong></td>
+                    <td id="p-abhijit" style="color: #2E7D32; font-weight: 600;">-</td>
+                    <td>अति शुभ व सिद्धिदायक मध्याह्न काल</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Educational Pillars -->
+    <section class="card" style="margin-top: 2rem;">
+      <div class="card-header">
+        <h2 class="card-title" style="margin: 0;">
+          <span>📖</span>
+          <span>पंचांग विज्ञान: पांच अंग और उनका महत्व</span>
+        </h2>
+      </div>
+      <div class="card-body">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <div>
+            <h3 style="font-family: var(--font-heading); color: var(--color-primary); font-size: 1.15rem;">
+              पंचांग क्या है?
+            </h3>
+            <p style="line-height: 1.7; color: var(--color-ink-muted);">
+              पंचांग भारतीय काल-गणना का खगोलीय दर्पण है। यह सूर्य और चंद्रमा के पारस्परिक कोणीय अंतर (प्रत्येक १२ अंश पर एक तिथि), नक्षत्र (चंद्रमा का तारामंडल में संचरण), योग (सूर्य-चंद्र भोग का योग) और करण (तिथि का आधा भाग) पर आधारित है। यह हमें प्रकृति की जैविक लय के साथ तालमेल में जीने की प्रेरणा देता है।
+            </p>
+          </div>
+
+          <div>
+            <h3 style="font-family: var(--font-heading); color: var(--color-primary); font-size: 1.15rem;">
+              राहुकाल और अभिजीत मुहूर्त
+            </h3>
+            <p style="line-height: 1.7; color: var(--color-ink-muted);">
+              प्रत्येक दिन के आठवें भाग को राहुकाल माना जाता है, जो सूर्योदय के समय के आधार पर बदलता है। पारंपरिक रूप से इस काल में बड़े अनुबंध या नए प्रतिष्ठान का आरंभ टालना श्रेयस्कर समझा जाता है। इसके विपरीत, मध्याह्न का अभिजीत मुहूर्त सर्वविदित शुभ मुहूर्त है जो सभी दोषों को शांत करने में समर्थ माना गया है।
+            </p>
+          </div>
+
+          <div>
+            <h3 style="font-family: var(--font-heading); color: var(--color-primary); font-size: 1.15rem;">
+              लाहिड़ी अयनांश और खगोलीय शुद्धता
+            </h3>
+            <p style="line-height: 1.7; color: var(--color-ink-muted);">
+              हमारा पंचांग भारत सरकार के कैलेंडर रिफॉर्म कमेटी द्वारा संस्तुत चित्रापक्ष (लाहिड़ी) अयनांश और आधुनिक स्विस एफेमेरिस के नियमों का पालन करता है। इससे ग्रह स्थितियों की सटीकता कुछ ही विकला (arc-seconds) के भीतर सुनिश्चित रहती है।
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3 class="footer-col-title">वैदिक जन्म कुंडली</h3>
+          <p class="footer-desc">
+            प्राचीन भारतीय ज्योतिष के खगोलीय सिद्धांतों और स्विस एफेमेरिस की सूक्ष्म गणनाओं पर आधारित नि:शुल्क सेवा।
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">महत्वपूर्ण लिंक</h3>
+          <ul class="footer-links">
+            <li><a href="/">जन्म कुंडली (Kundli)</a></li>
+            <li><a href="/matching">कुंडली मिलान (Matching)</a></li>
+            <li><a href="/lagna-calculator">लग्न कैलकुलेटर (Lagna)</a></li>
+            <li><a href="/vimshottari-dasha">विंशोत्तरी महादशा (Dasha)</a></li>
+            <li><a href="/nakshatra-calculator">नक्षत्र कैलकुलेटर (Nakshatra)</a></li>
+            <li><a href="/manglik-dosh">मांगलिक दोष कैलकुलेटर</a></li>
+            <li><a href="/sade-sati">शनि साढ़े साती</a></li>
+            <li><a href="/panchang">दैनिक पंचांग (Panchang)</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">नीति एवं नियम</h3>
+          <ul class="footer-links">
+            <li><a href="/about">हमारे बारे में (About)</a></li>
+            <li><a href="/privacy">गोपनीयता नीति (Privacy)</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          © 2026 वैदिक जन्म कुंडली (Vedic Kundali). सर्वाधिकार सुरक्षित।
+        </p>
+        <p class="footer-license">
+          Ephemeris data powered by Swiss Ephemeris under AGPL-3.0 License.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set default date to today
+    const dateInput = document.getElementById("p-date");
+    const today = new Date().toISOString().split("T")[0];
+    dateInput.value = today;
+
+    const form = document.getElementById("panchang-form");
+    const placeInput = document.getElementById("p-place-search");
+    const placeDropdown = document.getElementById("p-place-suggestions");
+    const placeSpinner = document.getElementById("p-place-spinner");
+    let searchTimer = null;
+
+    // Nominatim autocomplete
+    placeInput.addEventListener("input", function() {
+      const q = this.value.trim();
+      clearTimeout(searchTimer);
+      if (q.length < 2) {
+        placeDropdown.classList.add("hidden");
+        return;
+      }
+      searchTimer = setTimeout(() => {
+        placeSpinner.classList.remove("hidden");
+        fetch(`/api/search-place?q=${encodeURIComponent(q)}`)
+          .then(r => r.json())
+          .then(places => {
+            placeSpinner.classList.add("hidden");
+            placeDropdown.innerHTML = "";
+            if (!places || places.length === 0) {
+              placeDropdown.classList.add("hidden");
+              return;
+            }
+            places.forEach(p => {
+              const div = document.createElement("div");
+              div.className = "suggestion-item";
+              div.textContent = p.name;
+              div.addEventListener("click", () => {
+                placeInput.value = p.name;
+                document.getElementById("p-latitude").value = p.lat;
+                document.getElementById("p-longitude").value = p.lon;
+                document.getElementById("p-timezone").value = p.timezone || "Asia/Kolkata";
+                placeDropdown.classList.add("hidden");
+              });
+              placeDropdown.appendChild(div);
+            });
+            placeDropdown.classList.remove("hidden");
+          })
+          .catch(() => {
+            placeSpinner.classList.add("hidden");
+            placeDropdown.classList.add("hidden");
+          });
+      }, 350);
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!placeInput.contains(e.target) && !placeDropdown.contains(e.target)) {
+        placeDropdown.classList.add("hidden");
+      }
+    });
+
+    function fetchPanchang() {
+      const dateVal = dateInput.value;
+      const lat = document.getElementById("p-latitude").value;
+      const lon = document.getElementById("p-longitude").value;
+      const tz = document.getElementById("p-timezone").value;
+
+      const loading = document.getElementById("p-loading");
+      const content = document.getElementById("p-content");
+      const errBanner = document.getElementById("p-error-banner");
+
+      errBanner.classList.add("hidden");
+      loading.classList.remove("hidden");
+      content.classList.add("hidden");
+
+      fetch(`/api/panchang?date=${dateVal}&lat=${lat}&lon=${lon}&tz=${encodeURIComponent(tz)}`)
+        .then(r => r.json())
+        .then(res => {
+          loading.classList.add("hidden");
+          content.classList.remove("hidden");
+
+          if (!res.success) {
+            errBanner.textContent = res.message || "पंचांग गणना में त्रुटि।";
+            errBanner.classList.remove("hidden");
+            return;
+          }
+
+          renderPanchang(res.data);
+        })
+        .catch(err => {
+          loading.classList.add("hidden");
+          content.classList.remove("hidden");
+          errBanner.textContent = "सर्वर त्रुटि: " + err;
+          errBanner.classList.remove("hidden");
+        });
+    }
+
+    function renderPanchang(data) {
+      document.getElementById("p-hero-date").textContent = `दिनांक: ${data.date_formatted}`;
+      document.getElementById("p-hero-weekday").textContent = data.weekday;
+      document.getElementById("p-hero-tithi").textContent = `तिथि: ${data.tithi}`;
+
+      document.getElementById("p-organ-tithi").textContent = data.tithi;
+      document.getElementById("p-organ-vara").textContent = data.weekday;
+      document.getElementById("p-organ-nakshatra").textContent = data.nakshatra;
+      document.getElementById("p-organ-yoga").textContent = data.yoga;
+      document.getElementById("p-organ-karana").textContent = data.karana;
+
+      document.getElementById("p-sun-time").textContent = `${data.sunrise} / ${data.sunset}`;
+      document.getElementById("p-sun-rashi").textContent = `${data.sun_rashi} राशि`;
+      document.getElementById("p-moon-rashi").textContent = `${data.moon_rashi} राशि`;
+      document.getElementById("p-rahukaal").textContent = data.rahukaal;
+      document.getElementById("p-abhijit").textContent = data.abhijit;
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      fetchPanchang();
+    });
+
+    window.addEventListener("DOMContentLoaded", fetchPanchang);
+  </script>
+</body>
+</html>

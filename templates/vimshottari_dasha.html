@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO: Title & Meta Description with Target Keyword vimshottari dasha -->
+  <title>विंशोत्तरी महादशा कैलकुलेटर - Vimshottari Dasha चक्र</title>
+  <meta name="description" content="विंशोत्तरी महादशा (Vimshottari Dasha) कैलकुलेटर। जन्म नक्षत्र के आधार पर वर्तमान सक्रिय महादशा, प्रारंभ व समाप्ति तिथि की गणना करें। Free Kundali सेवा।">
+  <meta name="keywords" content="vimshottari dasha, विंशोत्तरी महादशा, mahadasha calculator, janam kundali hindi mein, dasha bhukti, महादशा चक्र">
+  <meta name="author" content="Vedic Kundali">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="http://127.0.0.1:5000/vimshottari-dasha">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="विंशोत्तरी महादशा कैलकुलेटर - Vimshottari Dasha चक्र">
+  <meta property="og:description" content="जन्म नक्षत्र के आधार पर जानिए वर्तमान सक्रिय महादशा, १२० वर्ष का संपूर्ण चक्र व तिथियां।">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://127.0.0.1:5000/vimshottari-dasha">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <nav class="main-navbar print-hide" aria-label="मुख्य नेविगेशन बार">
+    <div class="navbar-container">
+      <a href="/" class="navbar-brand">
+        <span class="brand-om">ॐ</span>
+        <span data-i18n="brand_title">वैदिक जन्म कुंडली</span>
+      </a>
+
+      <!-- Desktop & Mobile Links -->
+      <ul class="navbar-menu" id="navbarMenu">
+        <li><a href="/" class="navbar-link" data-i18n="nav_kundli">📜 जन्म कुंडली</a></li>
+        <li><a href="/matching" class="navbar-link" data-i18n="nav_matching">💍 कुंडली मिलान</a></li>
+        <li><a href="/lagna-calculator" class="navbar-link" data-i18n="nav_lagna">🌅 लग्न</a></li>
+        <li><a href="/vimshottari-dasha" class="navbar-link active" data-i18n="nav_dasha">⌛ महादशा</a></li>
+        <li><a href="/nakshatra-calculator" class="navbar-link" data-i18n="nav_nakshatra">✨ नक्षत्र</a></li>
+        <li><a href="/manglik-dosh" class="navbar-link" data-i18n="nav_manglik">🔥 मांगलिक दोष</a></li>
+        <li><a href="/sade-sati" class="navbar-link" data-i18n="nav_sade_sati">🪐 साढ़े साती</a></li>
+        <li><a href="/panchang" class="navbar-link" data-i18n="nav_panchang">📅 पंचांग</a></li>
+      </ul>
+
+      <!-- Right Actions: Language Switcher + Mobile Toggle -->
+      <div class="navbar-actions">
+        <div class="nav-lang-switch">
+          <button type="button" class="nav-lang-btn active" data-set-lang="hi">HI</button>
+          <button type="button" class="nav-lang-btn" data-set-lang="en">EN</button>
+        </div>
+        <button type="button" class="navbar-toggle" id="navbarToggle" aria-label="मेन्यू खोलें">
+          ☰
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-badge">
+        <span>⌛</span>
+        <span>महर्षि पाराशर प्रतिपादित १२० वर्ष काल-चक्र</span>
+      </div>
+      <h1 class="site-title">विंशोत्तरी महादशा कैलकुलेटर (Vimshottari Dasha)</h1>
+      <p class="site-tagline">जन्म नक्षत्र भोग्यांश के आधार पर वर्तमान सक्रिय महादशा, प्रारंभ व समाप्ति तिथियों की गणना</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="app-layout">
+      <!-- Input Form -->
+      <section class="card print-hide">
+        <div class="card-header">
+          <h2 class="card-title" style="margin: 0;">
+            <span>⌛</span>
+            <span>महादशा जानने हेतु विवरण</span>
+          </h2>
+        </div>
+
+        <form id="dashaForm" action="/vimshottari-dasha" method="GET">
+          <div class="form-group">
+            <label for="name" class="form-label">नाम</label>
+            <input type="text" id="name" name="name" class="form-control" value="{{ params.name }}" placeholder="उदा. रोहित">
+          </div>
+
+          <div class="form-group">
+            <label for="birth_date" class="form-label">जन्म तिथि<span class="required">*</span></label>
+            <input type="date" id="birth_date" name="birth_date" class="form-control" value="{{ params.birth_date }}" required>
+          </div>
+
+          <div class="form-group">
+            <label for="birth_time" class="form-label">जन्म समय<span class="required">*</span></label>
+            <input type="time" id="birth_time" name="birth_time" step="1" class="form-control" value="{{ params.birth_time }}" required>
+          </div>
+
+          <div class="form-group">
+            <label for="place_name" class="form-label">जन्म स्थान<span class="required">*</span></label>
+            <div class="autocomplete-wrapper">
+              <input type="text" id="place_name" name="place_name" class="form-control" value="{{ params.place_name }}" placeholder="उदा. नई दिल्ली, मुंबई" required autocomplete="off">
+              <span id="placeSpinner" class="autocomplete-spinner">खोज रहे हैं...</span>
+              <div id="placeDropdown" class="autocomplete-dropdown"></div>
+            </div>
+          </div>
+
+          <input type="hidden" id="latitude" name="latitude" value="{{ params.latitude }}">
+          <input type="hidden" id="longitude" name="longitude" value="{{ params.longitude }}">
+          <input type="hidden" id="timezone" name="timezone" value="{{ params.timezone }}">
+
+          <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">
+            <span>⌛</span>
+            <span>महादशा चक्र देखें (Calculate Dasha)</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Results Display -->
+      <section>
+        <div class="card" style="border-top: 5px solid var(--accent-gold);">
+          <div class="card-header">
+            <h3 class="card-title" style="margin: 0;">
+              <span>⏳</span>
+              <span>विंशोत्तरी महादशा समय-सीमा (१२० वर्ष चक्र)</span>
+            </h3>
+          </div>
+
+          <p style="color: var(--text-secondary); margin-bottom: 1.25rem; font-size: 0.95rem;">
+            जन्म कालीन चंद्रमा नक्षत्र: <strong>{{ result.dasha.nakshatra.name_hi }} (चरण {{ result.dasha.pada }})</strong> | जन्म पर शेष काल: <strong>{{ result.dasha.balance_years_at_birth }} वर्ष</strong>
+          </p>
+
+          <div class="table-responsive">
+            <table class="custom-table" aria-label="विंशोत्तरी महादशा तालिका">
+              <thead>
+                <tr>
+                  <th scope="col">महादशा स्वामी</th>
+                  <th scope="col">कुल वर्ष</th>
+                  <th scope="col">प्रारंभ तिथि</th>
+                  <th scope="col">समाप्ति तिथि</th>
+                  <th scope="col">स्थिति</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for d in result.dasha.cycle %}
+                  <tr class="{% if d.is_active %}active-dasha-row{% endif %}">
+                    <td><strong>{{ d.lord_hi }} ({{ d.lord_en }})</strong></td>
+                    <td>{{ d.balance_years_formatted }}</td>
+                    <td>{{ d.start_date }}</td>
+                    <td>{{ d.end_date }}</td>
+                    <td>
+                      {% if d.is_active %}
+                        <span class="badge badge-active">वर्तमान सक्रिय</span>
+                      {% elif d.is_birth %}
+                        <span class="badge" style="background:#E2D9CC;color:#4A4036">जन्म कालीन</span>
+                      {% else %}
+                        —
+                      {% endif %}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Educational Guide on Vimshottari Dasha -->
+    <section class="educational-section print-hide">
+      <h2>विंशोत्तरी महादशा (Vimshottari Dasha) की कार्यप्रणाली</h2>
+      <div class="edu-grid">
+        <article class="edu-box">
+          <h3><span>🪐</span> ग्रहों के कालखंड (Periods)</h3>
+          <p>
+            विंशोत्तरी व्यवस्था में कुल १२० वर्षों का कालखंड ९ ग्रहों में बंटा है: केतु (७ वर्ष), शुक्र (२० वर्ष), सूर्य (६ वर्ष), चंद्र (१० वर्ष), मंगल (७ वर्ष), राहु (१८ वर्ष), गुरु (१६ वर्ष), शनि (१९ वर्ष) और बुध (१७ वर्ष)।
+          </p>
+        </article>
+
+        <article class="edu-box">
+          <h3><span>🌙</span> चंद्रमा की स्थिति से दशा निर्धारण</h3>
+          <p>
+            जन्म के समय चंद्रमा जिस नक्षत्र में होता है, उस नक्षत्र के स्वामी की महादशा से व्यक्ति का जीवन प्रारंभ होता है। चंद्रमा ने उस नक्षत्र में कितना भ्रमण तय कर लिया है, उसी अनुपात में प्रथम दशा का भुक्त और भोग्य काल निकाला जाता है।
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p style="font-weight: 600; color: #FFFFFF;">वैदिक जन्म कुंडली (Vedic Kundali Portal)</p>
+      <p class="footer-copy">
+        <a href="/" style="color:#FFD97D; margin-right: 15px;">जन्म कुंडली</a>
+        <a href="/matching" style="color:#FFD97D; margin-right: 15px;">कुंडली मिलान</a>
+        <a href="/lagna-calculator" style="color:#FFD97D; margin-right: 15px;">लग्न कैलकुलेटर</a>
+        <a href="/vimshottari-dasha" style="color:#FFD97D; margin-right: 15px;">विंशोत्तरी दशा</a>
+        <a href="/nakshatra-calculator" style="color:#FFD97D; margin-right: 15px;">नक्षत्र खोजें</a>
+        <a href="/manglik-dosh" style="color:#FFD97D; margin-right: 15px;">मांगलिक दोष</a>
+        <a href="/sade-sati" style="color:#FFD97D; margin-right: 15px;">साढ़े साती</a>
+        <a href="/panchang" style="color:#FFD97D;">पंचांग</a><br><br>
+        &copy; 2026 वैदिक जन्म कुंडली | AGPL-3.0 Ephemeris Compliance
+      </p>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

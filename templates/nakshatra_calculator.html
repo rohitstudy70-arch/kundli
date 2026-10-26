@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO: Title & Meta Description with Target Keyword nakshatra kaise pata kare -->
+  <title>नक्षत्र कैलकुलेटर: Nakshatra Kaise Pata Kare - चरण व स्वामी</title>
+  <meta name="description" content="जन्म नक्षत्र कैसे पता करें (Nakshatra Kaise Pata Kare)? जन्म विवरण दर्ज कर पाएं 27 नक्षत्र, नक्षत्र चरण, राशि, नामाक्षर व अधिष्ठाता देवता। Free Kundali सेवा।">
+  <meta name="keywords" content="nakshatra kaise pata kare, नक्षत्र कैलकुलेटर, जन्म नक्षत्र, birth star finder hindi, janam kundali hindi mein, 27 nakshatra">
+  <meta name="author" content="Vedic Kundali">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="http://127.0.0.1:5000/nakshatra-calculator">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="नक्षत्र कैलकुलेटर: Nakshatra Kaise Pata Kare - चरण व स्वामी">
+  <meta property="og:description" content="जन्म तिथि और समय से जानिए अपना जन्म नक्षत्र, चरण, नामाक्षर एवं अधिष्ठाता देवता।">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://127.0.0.1:5000/nakshatra-calculator">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <nav class="main-navbar print-hide" aria-label="मुख्य नेविगेशन बार">
+    <div class="navbar-container">
+      <a href="/" class="navbar-brand">
+        <span class="brand-om">ॐ</span>
+        <span data-i18n="brand_title">वैदिक जन्म कुंडली</span>
+      </a>
+
+      <!-- Desktop & Mobile Links -->
+      <ul class="navbar-menu" id="navbarMenu">
+        <li><a href="/" class="navbar-link" data-i18n="nav_kundli">📜 जन्म कुंडली</a></li>
+        <li><a href="/matching" class="navbar-link" data-i18n="nav_matching">💍 कुंडली मिलान</a></li>
+        <li><a href="/lagna-calculator" class="navbar-link" data-i18n="nav_lagna">🌅 लग्न</a></li>
+        <li><a href="/vimshottari-dasha" class="navbar-link" data-i18n="nav_dasha">⌛ महादशा</a></li>
+        <li><a href="/nakshatra-calculator" class="navbar-link active" data-i18n="nav_nakshatra">✨ नक्षत्र</a></li>
+        <li><a href="/manglik-dosh" class="navbar-link" data-i18n="nav_manglik">🔥 मांगलिक दोष</a></li>
+        <li><a href="/sade-sati" class="navbar-link" data-i18n="nav_sade_sati">🪐 साढ़े साती</a></li>
+        <li><a href="/panchang" class="navbar-link" data-i18n="nav_panchang">📅 पंचांग</a></li>
+      </ul>
+
+      <!-- Right Actions: Language Switcher + Mobile Toggle -->
+      <div class="navbar-actions">
+        <div class="nav-lang-switch">
+          <button type="button" class="nav-lang-btn active" data-set-lang="hi">HI</button>
+          <button type="button" class="nav-lang-btn" data-set-lang="en">EN</button>
+        </div>
+        <button type="button" class="navbar-toggle" id="navbarToggle" aria-label="मेन्यू खोलें">
+          ☰
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-badge">
+        <span>✨</span>
+        <span>२७ वैदिक नक्षत्र एवं १०८ चरण गणना</span>
+      </div>
+      <h1 class="site-title">नक्षत्र कैलकुलेटर (Nakshatra Kaise Pata Kare)</h1>
+      <p class="site-tagline">जन्म विवरण द्वारा अपना जन्म नक्षत्र, चरण, नामाक्षर, स्वामी एवं देवता जानें</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="app-layout">
+      <!-- Input Form -->
+      <section class="card print-hide">
+        <div class="card-header">
+          <h2 class="card-title" style="margin: 0;">
+            <span>✨</span>
+            <span>नक्षत्र जानने हेतु जन्म विवरण</span>
+          </h2>
+        </div>
+
+        <form id="nakshatraForm" action="/nakshatra-calculator" method="GET">
+          <div class="form-group">
+            <label for="name" class="form-label">नाम</label>
+            <input type="text" id="name" name="name" class="form-control" value="{{ params.name }}" placeholder="उदा. नेहा">
+          </div>
+
+          <div class="form-group">
+            <label for="birth_date" class="form-label">जन्म तिथि<span class="required">*</span></label>
+            <input type="date" id="birth_date" name="birth_date" class="form-control" value="{{ params.birth_date }}" required>
+          </div>
+
+          <div class="form-group">
+            <label for="birth_time" class="form-label">जन्म समय<span class="required">*</span></label>
+            <input type="time" id="birth_time" name="birth_time" step="1" class="form-control" value="{{ params.birth_time }}" required>
+          </div>
+
+          <div class="form-group">
+            <label for="place_name" class="form-label">जन्म स्थान<span class="required">*</span></label>
+            <div class="autocomplete-wrapper">
+              <input type="text" id="place_name" name="place_name" class="form-control" value="{{ params.place_name }}" placeholder="उदा. नई दिल्ली, मुंबई" required autocomplete="off">
+              <span id="placeSpinner" class="autocomplete-spinner">खोज रहे हैं...</span>
+              <div id="placeDropdown" class="autocomplete-dropdown"></div>
+            </div>
+          </div>
+
+          <input type="hidden" id="latitude" name="latitude" value="{{ params.latitude }}">
+          <input type="hidden" id="longitude" name="longitude" value="{{ params.longitude }}">
+          <input type="hidden" id="timezone" name="timezone" value="{{ params.timezone }}">
+
+          <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">
+            <span>✨</span>
+            <span>नक्षत्र पता करें (Find Nakshatra)</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Results Display -->
+      <section>
+        <div class="card" style="border-top: 5px solid #2B580C; text-align: center;">
+          <h3 style="color: var(--text-muted); font-size: 0.95rem; text-transform: uppercase;">आपका जन्म नक्षत्र</h3>
+          <div style="font-size: 2.8rem; font-weight: 800; color: #2B580C; font-family: 'Tiro Devanagari Hindi', serif; margin: 0.5rem 0;">
+            {{ result.dasha.nakshatra.name_hi }}
+          </div>
+          <p style="font-size: 1.15rem; color: var(--primary-vermilion); font-weight: 700;">
+            चरण (पद): {{ result.dasha.pada }} | नक्षत्र स्वामी: {{ result.dasha.nakshatra.lord_hi }}
+          </p>
+
+          <div class="details-grid" style="margin-top: 1.5rem;">
+            <div class="detail-pill">
+              <span class="detail-pill-label">नामाक्षर (Syllables)</span>
+              <span class="detail-pill-val">{{ result.dasha.nakshatra.syllables }}</span>
+            </div>
+            <div class="detail-pill">
+              <span class="detail-pill-label">अधिष्ठाता देवता</span>
+              <span class="detail-pill-val">{{ result.dasha.nakshatra.deity }}</span>
+            </div>
+            <div class="detail-pill">
+              <span class="detail-pill-label">प्रतीक चिह्न</span>
+              <span class="detail-pill-val" style="font-size: 0.9rem;">{{ result.dasha.nakshatra.symbol }}</span>
+            </div>
+            <div class="detail-pill">
+              <span class="detail-pill-label">चंद्र राशि</span>
+              <span class="detail-pill-val">{{ result.panchang.moon_rashi }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <span>🪐</span>
+              <span>चंद्रमा की स्पष्ट खगोलीय स्थिति</span>
+            </h3>
+          </div>
+          {% set moon_graha = result.grahas | selectattr('id', 'equalto', 'moon') | first %}
+          <div class="details-grid">
+            <div class="detail-pill">
+              <span class="detail-pill-label">चंद्र अंश (Degrees)</span>
+              <span class="detail-pill-val">{{ moon_graha.dms_str }}</span>
+            </div>
+            <div class="detail-pill">
+              <span class="detail-pill-label">चंद्र भाव (House)</span>
+              <span class="detail-pill-val">भाव {{ moon_graha.house_num }}</span>
+            </div>
+            <div class="detail-pill">
+              <span class="detail-pill-label">तिथि</span>
+              <span class="detail-pill-val">{{ result.panchang.tithi }}</span>
+            </div>
+            <div class="detail-pill">
+              <span class="detail-pill-label">जन्म कालीन प्रथम महादशा</span>
+              <span class="detail-pill-val">{{ result.dasha.cycle[0].lord_hi }} ({{ result.dasha.cycle[0].balance_years_formatted }})</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Educational Guide -->
+    <section class="educational-section print-hide">
+      <h2>जन्म नक्षत्र कैसे पता करें (Nakshatra Kaise Pata Kare)</h2>
+      <div class="edu-grid">
+        <article class="edu-box">
+          <h3><span>✨</span> नक्षत्र का ज्योतिषीय महत्व</h3>
+          <p>
+            वैदिक ज्योतिष में जन्म नक्षत्र चंद्रमा की सटीक आकाशगंगा स्थिति को दर्शाता है। जन्म नक्षत्र से ही बच्चे का नामकरण अक्षर, गण, नाड़ी, योनि और जीवन की प्रथम महादशा तय होती है।
+          </p>
+        </article>
+
+        <article class="edu-box">
+          <h3><span>🔢</span> ४ चरण (पद) क्या होते हैं?</h3>
+          <p>
+            प्रत्येक नक्षत्र को ४ समान भागों में बांटा गया है, जिन्हें 'चरण' या 'पद' कहते हैं (प्रत्येक ३° २०' का)। कुल १०८ पद होते हैं। चरण के आधार पर सटीक नामाक्षर और नवमांश राशि निश्चित होती है।
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p style="font-weight: 600; color: #FFFFFF;">वैदिक जन्म कुंडली (Vedic Kundali Portal)</p>
+      <p class="footer-copy">
+        <a href="/" style="color:#FFD97D; margin-right: 15px;">जन्म कुंडली</a>
+        <a href="/matching" style="color:#FFD97D; margin-right: 15px;">कुंडली मिलान</a>
+        <a href="/lagna-calculator" style="color:#FFD97D; margin-right: 15px;">लग्न कैलकुलेटर</a>
+        <a href="/vimshottari-dasha" style="color:#FFD97D; margin-right: 15px;">विंशोत्तरी दशा</a>
+        <a href="/nakshatra-calculator" style="color:#FFD97D; margin-right: 15px;">नक्षत्र खोजें</a>
+        <a href="/manglik-dosh" style="color:#FFD97D; margin-right: 15px;">मांगलिक दोष</a>
+        <a href="/sade-sati" style="color:#FFD97D; margin-right: 15px;">साढ़े साती</a>
+        <a href="/panchang" style="color:#FFD97D;">पंचांग</a><br><br>
+        &copy; 2026 वैदिक जन्म कुंडली | AGPL-3.0 Ephemeris Compliance
+      </p>
+    </div>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

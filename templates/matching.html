@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO: Title & Meta Description with Target Keywords -->
+  <title>Kundali Matching: Kundli Matching | Astrosage Kundli</title>
+  <meta name="description" content="Free Kundali Matching aur Kundli Matching हिंदी में। वर-वधू के 36 गुण मिलान, नाड़ी दोष परिहार व Astrosage kundli matching शैली में सटीक विश्लेषण।">
+  <meta name="keywords" content="kundali matching, kundli matching, astrosage kundli, astrosage kundli matching, free kundali, 36 gun milan hindi, kundali milan hindi">
+  <meta name="author" content="Vedic Kundali">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="http://127.0.0.1:5000/matching">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="कुंडली मिलान - 36 गुण अष्टकूट मिलान एवं मांगलिक विचार">
+  <meta property="og:description" content="मुफ्त वैदिक कुंडली मिलान। 36 गुण, नाड़ी-भकूट दोष परिहार, मांगलिक साम्य व सटीक परिणाम।">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://127.0.0.1:5000/matching">
+  <meta property="og:locale" content="hi_IN">
+
+  <!-- Google Fonts: Tiro Devanagari Hindi & Noto Sans Devanagari -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <!-- JSON-LD FAQPage Schema for Matching FAQs -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "विवाह के लिए 36 में से कितने गुण मिलना शुभ माना जाता है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "पारंपरिक वैदिक ज्योतिष में 36 में से 18 या अधिक गुणों का मिलना विवाह के लिए ग्राह्य माना जाता है। 18 से 24 गुण मध्यम, 25 से 32 गुण उत्तम, तथा 33 से 36 गुण अति उत्तम माने जाते हैं। 18 से कम गुण होने पर कुंडलियों के अन्य योगों और गुरु-शुक्र की स्थिति का विशेष अध्ययन करना चाहिए।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "नाड़ी दोष क्या होता है और क्या इसका परिहार संभव है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "अष्टकूट मिलान में नाड़ी के सर्वाधिक 8 अंक होते हैं। वर और वधू की एक ही नाड़ी (आदि, मध्य या अंत्य) होने पर नाड़ी दोष माना जाता है। किंतु यदि दोनों की राशियां भिन्न हों या एक ही राशि में भिन्न नक्षत्र हों अथवा राशि स्वामियों में मित्रता हो, तो शास्त्रों के अनुसार नाड़ी दोष का परिहार हो जाता है और दोष नहीं लगता।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "यदि वर या वधू में से कोई एक मांगलिक हो तो क्या विवाह हो सकता है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "हाँ, बिल्कुल हो सकता है। यदि दोनों मांगलिक हों तो मंगल का साम्य होकर प्रभाव संतुलित हो जाता है। यदि केवल एक पक्ष मांगलिक हो, तो गुरु की दृष्टि, स्वराशि का मंगल, 28 वर्ष की आयु या दूसरे पक्ष की कुंडली में पाप ग्रहों के समतुल्य भावों में होने से मंगल का प्रभाव निष्प्रभावी हो जाता है।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "भकूट दोष (Bhakoot Dosha) क्या है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "जब दोनों की चंद्र राशियों के बीच 2/12 (द्विर्द्वादश), 9/5 (नवम-पंचम) या 6/8 (षडाष्टक) का अंतर होता है, तो भकूट दोष माना जाता है (7 अंक कटते हैं)। किंतु यदि दोनों के राशि स्वामी एक ही हों (जैसे मेष-वृश्चिक) या आपस में मित्र हों, तो भकूट दोष का पूर्ण परिहार हो जाता है।"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <nav class="main-navbar print-hide" aria-label="मुख्य नेविगेशन बार">
+    <div class="navbar-container">
+      <a href="/" class="navbar-brand">
+        <span class="brand-om">ॐ</span>
+        <span data-i18n="brand_title">वैदिक जन्म कुंडली</span>
+      </a>
+
+      <!-- Desktop & Mobile Links -->
+      <ul class="navbar-menu" id="navbarMenu">
+        <li><a href="/" class="navbar-link" data-i18n="nav_kundli">📜 जन्म कुंडली</a></li>
+        <li><a href="/matching" class="navbar-link active" data-i18n="nav_matching">💍 कुंडली मिलान</a></li>
+        <li><a href="/lagna-calculator" class="navbar-link" data-i18n="nav_lagna">🌅 लग्न</a></li>
+        <li><a href="/vimshottari-dasha" class="navbar-link" data-i18n="nav_dasha">⌛ महादशा</a></li>
+        <li><a href="/nakshatra-calculator" class="navbar-link" data-i18n="nav_nakshatra">✨ नक्षत्र</a></li>
+        <li><a href="/manglik-dosh" class="navbar-link" data-i18n="nav_manglik">🔥 मांगलिक दोष</a></li>
+        <li><a href="/sade-sati" class="navbar-link" data-i18n="nav_sade_sati">🪐 साढ़े साती</a></li>
+        <li><a href="/panchang" class="navbar-link" data-i18n="nav_panchang">📅 पंचांग</a></li>
+      </ul>
+
+      <!-- Right Actions: Language Switcher + Mobile Toggle -->
+      <div class="navbar-actions">
+        <div class="nav-lang-switch">
+          <button type="button" class="nav-lang-btn active" data-set-lang="hi">HI</button>
+          <button type="button" class="nav-lang-btn" data-set-lang="en">EN</button>
+        </div>
+        <button type="button" class="navbar-toggle" id="navbarToggle" aria-label="मेन्यू खोलें">
+          ☰
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-badge">
+        <span>ॐ</span>
+        <span>अष्टकूट ३६ गुण मिलान प्रणाली</span>
+      </div>
+      <h1 class="site-title">वैदिक कुंडली मिलान (Kundli Matching)</h1>
+      <p class="site-tagline">वर-वधू के ३६ गुण, नाड़ी-भकूट परिहार, मांगलिक साम्य एवं दोनों कुंडलियों का प्रामाणिक विश्लेषण</p>
+    </div>
+  </header>
+
+  <!-- Print Only Header -->
+  <div class="print-header">
+    <h2 id="print_matching_title">{{ initial_match.summary.groom.name if initial_match else 'वर' }} एवं {{ initial_match.summary.bride.name if initial_match else 'वधू' }} का कुंडली मिलान</h2>
+    <p>कुल प्राप्तांक: <strong>{{ initial_match.total_score if initial_match else '—' }} / ३६ गुण</strong> ({{ initial_match.verdict_badge if initial_match else '' }})</p>
+    <p>{{ initial_match.manglik_analysis.verdict if initial_match else '' }}</p>
+  </div>
+
+  <main class="container">
+
+    <!-- Matching Input Form Card -->
+    <section class="card print-hide" style="margin-bottom: 2rem;">
+      <div class="card-header">
+        <h2 class="card-title" style="margin: 0;">
+          <span>💍</span>
+          <span>वर एवं वधू का जन्म विवरण दर्ज करें</span>
+        </h2>
+      </div>
+
+      <div id="matchAlert" class="alert alert-danger" style="display: none;" role="alert"></div>
+
+      <form id="matchingForm" novalidate>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+          
+          <div style="display: grid; grid-template-columns: 1fr; gap: 1.5rem;" class="match-two-col">
+            
+            <!-- Column 1: Groom Details (वर) -->
+            <div style="background: #FDF9F2; padding: 1.25rem; border-radius: var(--radius-sm); border: 1.5px solid var(--gold-border);">
+              <h3 style="color: var(--primary-dark); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px dashed var(--gold-border); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+                <span>🤵</span>
+                <span>वर का विवरण (Groom Details)</span>
+              </h3>
+
+              <div class="form-group">
+                <label for="groom_name" class="form-label">वर का नाम<span class="required">*</span></label>
+                <input type="text" id="groom_name" name="groom_name" class="form-control" placeholder="उदा. राहुल शर्मा" value="{{ defaults_groom.name }}" required>
+                <div id="groom_name_error" class="field-error-msg"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="groom_birth_date" class="form-label">जन्म तिथि<span class="required">*</span></label>
+                <input type="date" id="groom_birth_date" name="groom_birth_date" class="form-control" value="{{ defaults_groom.birth_date }}" required>
+                <div id="groom_birth_date_error" class="field-error-msg"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="groom_birth_time" class="form-label">जन्म समय<span class="required">*</span></label>
+                <input type="time" id="groom_birth_time" name="groom_birth_time" step="1" class="form-control" value="{{ defaults_groom.birth_time }}" required>
+                <div id="groom_birth_time_error" class="field-error-msg"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="groom_place" class="form-label">जन्म स्थान<span class="required">*</span></label>
+                <div class="autocomplete-wrapper">
+                  <input type="text" id="groom_place" name="groom_place" class="form-control" placeholder="उदा. नई दिल्ली, भारत" value="{{ defaults_groom.place_name }}" required autocomplete="off">
+                  <span id="groomSpinner" class="autocomplete-spinner">खोज रहे हैं...</span>
+                  <div id="groomDropdown" class="autocomplete-dropdown"></div>
+                </div>
+                <div id="groom_place_error" class="field-error-msg"></div>
+              </div>
+
+              <input type="hidden" id="groom_lat" name="groom_lat" value="{{ defaults_groom.latitude }}">
+              <input type="hidden" id="groom_lon" name="groom_lon" value="{{ defaults_groom.longitude }}">
+              <input type="hidden" id="groom_tz" name="groom_tz" value="{{ defaults_groom.timezone }}">
+            </div>
+
+            <!-- Column 2: Bride Details (वधू) -->
+            <div style="background: #FFF8FA; padding: 1.25rem; border-radius: var(--radius-sm); border: 1.5px solid #F5C6CB;">
+              <h3 style="color: #8C1D40; margin-top: 0; margin-bottom: 1rem; border-bottom: 1px dashed #F5C6CB; padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem;">
+                <span>👰</span>
+                <span>वधू का विवरण (Bride Details)</span>
+              </h3>
+
+              <div class="form-group">
+                <label for="bride_name" class="form-label">वधू का नाम<span class="required">*</span></label>
+                <input type="text" id="bride_name" name="bride_name" class="form-control" placeholder="उदा. पूजा वर्मा" value="{{ defaults_bride.name }}" required>
+                <div id="bride_name_error" class="field-error-msg"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="bride_birth_date" class="form-label">जन्म तिथि<span class="required">*</span></label>
+                <input type="date" id="bride_birth_date" name="bride_birth_date" class="form-control" value="{{ defaults_bride.birth_date }}" required>
+                <div id="bride_birth_date_error" class="field-error-msg"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="bride_birth_time" class="form-label">जन्म समय<span class="required">*</span></label>
+                <input type="time" id="bride_birth_time" name="bride_birth_time" step="1" class="form-control" value="{{ defaults_bride.birth_time }}" required>
+                <div id="bride_birth_time_error" class="field-error-msg"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="bride_place" class="form-label">जन्म स्थान<span class="required">*</span></label>
+                <div class="autocomplete-wrapper">
+                  <input type="text" id="bride_place" name="bride_place" class="form-control" placeholder="उदा. जयपुर, राजस्थान" value="{{ defaults_bride.place_name }}" required autocomplete="off">
+                  <span id="brideSpinner" class="autocomplete-spinner">खोज रहे हैं...</span>
+                  <div id="brideDropdown" class="autocomplete-dropdown"></div>
+                </div>
+                <div id="bride_place_error" class="field-error-msg"></div>
+              </div>
+
+              <input type="hidden" id="bride_lat" name="bride_lat" value="{{ defaults_bride.latitude }}">
+              <input type="hidden" id="bride_lon" name="bride_lon" value="{{ defaults_bride.longitude }}">
+              <input type="hidden" id="bride_tz" name="bride_tz" value="{{ defaults_bride.timezone }}">
+            </div>
+
+          </div>
+
+          <div style="text-align: center;">
+            <button type="submit" id="matchSubmitBtn" class="btn btn-primary" style="max-width: 400px; font-size: 1.1rem; padding: 0.85rem 2rem;">
+              <span>💍</span>
+              <span>गुण मिलान करें (Match Kundli)</span>
+            </button>
+          </div>
+
+        </div>
+      </form>
+    </section>
+
+    <!-- Results Section -->
+    <section id="matchingResultsContainer">
+
+      <!-- Top Results Header & Print Button -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;" class="print-hide">
+        <h2 style="margin: 0;">मिलान परिणाम एवं गुण सारणी</h2>
+        <button type="button" id="matchPrintBtn" class="btn btn-gold" aria-label="मिलान रिपोर्ट प्रिंट करें">
+          <span>🖨️</span>
+          <span>प्रिंट / PDF सहेजें</span>
+        </button>
+      </div>
+
+      <!-- Total Score & Verdict Banner Card -->
+      <div class="card" style="text-align: center; background: linear-gradient(180deg, #FFFFFF 0%, #FFFDF7 100%); border: 2px solid var(--accent-gold);">
+        <h3 style="color: var(--text-muted); font-size: 1rem; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 1px;">
+          अष्टकूट गुण मिलान स्कोर
+        </h3>
+        <div style="font-size: 3.2rem; font-weight: 800; color: var(--primary-dark); font-family: 'Tiro Devanagari Hindi', serif; line-height: 1.1;">
+          <span id="res_total_score">{{ initial_match.total_score if initial_match else '0' }}</span>
+          <span style="font-size: 1.6rem; color: var(--text-muted); font-weight: 500;">/ ३६ गुण</span>
+        </div>
+        <div style="margin: 0.85rem 0;">
+          <span id="res_verdict_badge" class="badge" style="background: {{ initial_match.verdict_color if initial_match else '#C57B12' }}; color: #FFFFFF; font-size: 1.1rem; padding: 0.4rem 1.2rem; border-radius: 30px;">
+            {{ initial_match.verdict_badge if initial_match else '—' }}
+          </span>
+        </div>
+        <p id="res_verdict_desc" style="max-width: 650px; margin: 0 auto; color: var(--text-secondary); font-size: 0.95rem;">
+          {{ initial_match.verdict_desc if initial_match else '' }}
+        </p>
+
+        <!-- Summary comparison tags -->
+        <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-light); flex-wrap: wrap;">
+          <div>
+            <strong>🤵 वर (Groom):</strong> <span id="res_groom_summary">{{ initial_match.summary.groom.name if initial_match else '' }} | लग्न: {{ initial_match.summary.groom.lagna if initial_match else '' }} | राशि: {{ initial_match.summary.groom.rashi if initial_match else '' }} | {{ initial_match.summary.groom.nakshatra if initial_match else '' }}</span>
+          </div>
+          <div>
+            <strong>👰 वधू (Bride):</strong> <span id="res_bride_summary">{{ initial_match.summary.bride.name if initial_match else '' }} | लग्न: {{ initial_match.summary.bride.lagna if initial_match else '' }} | राशि: {{ initial_match.summary.bride.rashi if initial_match else '' }} | {{ initial_match.summary.bride.nakshatra if initial_match else '' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Manglik Analysis Card -->
+      <div class="card" style="border-left: 5px solid #C84B31;">
+        <div class="card-header">
+          <h3 class="card-title">
+            <span>🔥</span>
+            <span>मांगलिक साम्य विश्लेषण (Manglik Analysis)</span>
+          </h3>
+          <span id="res_manglik_status" class="badge" style="background: #FDF1D6; color: #8C4000; font-size: 0.9rem; padding: 0.35rem 0.85rem;">
+            {{ initial_match.manglik_analysis.status if initial_match else '—' }}
+          </span>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;" class="match-two-col">
+          <div style="background: var(--bg-card-alt); padding: 0.85rem; border-radius: var(--radius-sm);">
+            <strong>वर की स्थिति:</strong>
+            <span id="res_manglik_groom">{{ initial_match.manglik_analysis.groom.status if initial_match else '' }} (मंगल भाव {{ initial_match.manglik_analysis.groom.mars_house if initial_match else '' }})</span>
+          </div>
+          <div style="background: var(--bg-card-alt); padding: 0.85rem; border-radius: var(--radius-sm);">
+            <strong>वधू की स्थिति:</strong>
+            <span id="res_manglik_bride">{{ initial_match.manglik_analysis.bride.status if initial_match else '' }} (मंगल भाव {{ initial_match.manglik_analysis.bride.mars_house if initial_match else '' }})</span>
+          </div>
+        </div>
+        <p id="res_manglik_verdict" style="margin-top: 1rem; margin-bottom: 0; color: var(--text-primary); font-size: 0.95rem; font-weight: 500;">
+          {{ initial_match.manglik_analysis.verdict if initial_match else '' }}
+        </p>
+      </div>
+
+      <!-- Ashta Kuta Detailed Table Card -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <span>📊</span>
+            <span>अष्टकूट ३६ गुण विस्तृत सारणी</span>
+          </h3>
+        </div>
+        <div class="table-responsive">
+          <table class="custom-table" aria-label="अष्टकूट गुण तालिका">
+            <thead>
+              <tr>
+                <th scope="col">कूट (Kuta)</th>
+                <th scope="col">क्षेत्र (Area)</th>
+                <th scope="col">अधिकतम</th>
+                <th scope="col">प्राप्तांक</th>
+                <th scope="col">वर मान</th>
+                <th scope="col">वधू मान</th>
+                <th scope="col">विश्लेषण एवं परिणाम</th>
+              </tr>
+            </thead>
+            <tbody id="kutaTableBody">
+              {% if initial_match and initial_match.kutas %}
+                {% for k in initial_match.kutas %}
+                  <tr>
+                    <td><strong>{{ k.name_hi }}</strong></td>
+                    <td style="font-size: 0.85rem; color: var(--text-secondary);">{{ k.area }}</td>
+                    <td>{{ k.max_points }}</td>
+                    <td>
+                      <strong style="color: {% if k.obtained_points == k.max_points %}#2E7D32{% elif k.obtained_points > 0 %}#C57B12{% else %}#C62828{% endif %}; font-size: 1.05rem;">
+                        {{ k.obtained_points }}
+                      </strong>
+                    </td>
+                    <td>{{ k.groom_val }}</td>
+                    <td>{{ k.bride_val }}</td>
+                    <td style="font-size: 0.88rem;">{{ k.description }}</td>
+                  </tr>
+                {% endfor %}
+              {% endif %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Side-by-Side North Indian Charts -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">
+            <span>🔯</span>
+            <span>दोनों कुंडलियों का तुलनात्मक आरेख (Charts Comparison)</span>
+          </h3>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;" class="match-two-col">
+          <div style="text-align: center;">
+            <h4 style="color: var(--primary-dark); margin-bottom: 0.75rem;">🤵 वर की लग्न कुंडली (Groom)</h4>
+            <div id="groomChartContainer" class="kundli-chart-wrapper">
+              {% if initial_groom_svg %}
+                {{ initial_groom_svg | safe }}
+              {% endif %}
+            </div>
+          </div>
+          <div style="text-align: center;">
+            <h4 style="color: #8C1D40; margin-bottom: 0.75rem;">👰 वधू की लग्न कुंडली (Bride)</h4>
+            <div id="brideChartContainer" class="kundli-chart-wrapper">
+              {% if initial_bride_svg %}
+                {{ initial_bride_svg | safe }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Educational Explanatory Content for Kundali Matching -->
+    <section class="educational-section print-hide" aria-labelledby="matchingEduTitle">
+      <h2 id="matchingEduTitle">कुंडली मिलान एवं अष्टकूट विज्ञान</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+        विवाह मिलान केवल दो व्यक्तियों का ही नहीं, बल्कि दो परिवारों और भावी पीढ़ियों के स्वास्थ्य व सामंजस्य का विज्ञान है:
+      </p>
+
+      <div class="edu-grid">
+        <article class="edu-box">
+          <h3><span>⚖️</span> अष्टकूट ३६ गुण मिलान क्या है?</h3>
+          <p>
+            वैदिक महर्षियों ने विवाह की स्थिरता के लिए आठ मुख्य मनोवैज्ञानिक, जैविक और सामाजिक पहलुओं (वर्ण, वश्य, तारा, योनि, ग्रहमैत्री, गण, भकूट, नाड़ी) को निश्चित अंकों में ढाला है। इनका कुल योग ३६ गुण होता है। १८ या अधिक गुण मिलने पर मिलान को शास्त्रीय दृष्टि से स्वीकार्य माना जाता है। यह व्यक्ति के स्वभाव, मित्रता और स्वास्थ्य की अनुकूलता का मापदंड है।
+          </p>
+        </article>
+
+        <article class="edu-box">
+          <h3><span>🧬</span> नाड़ी दोष और इसका परिहार</h3>
+          <p>
+            नाड़ी के सर्वाधिक ८ अंक होते हैं, जो मुख्य रूप से त्रिदोष (वात, पित्त, कफ) और आनुवंशिक रक्त अनुकूलता से जुड़े हैं। समान नाड़ी होने पर नाड़ी दोष बनता है। किंतु यदि दोनों की राशि भिन्न हो, नक्षत्र भिन्न हो, अथवा राशि स्वामियों में परस्पर मित्रता हो, तो शास्त्रों के अनुसार नाड़ी दोष का स्वतः परिहार हो जाता है और दांपत्य सुख में कोई बाधा नहीं आती।
+          </p>
+        </article>
+
+        <article class="edu-box">
+          <h3><span>💞</span> भकूट दोष और गण दोष का यथार्थ</h3>
+          <p>
+            भकूट के ७ अंक प्रेम और वंश-वृद्धि से संबंधित हैं। राशियों में ६/८, ९/५ या २/१२ का अंतर होने पर भकूट दोष बनता है। किंतु यदि दोनों राशियों के स्वामी एक ही हों या मित्र हों, तो भकूट दोष निष्प्रभावी हो जाता है। इसी प्रकार गण दोष (देव व राक्षस) में भी स्वभाव सामंजस्य के अन्य सूत्रों से शांति हो जाती है, अतः व्यर्थ भयभीत नहीं होना चाहिए।
+          </p>
+        </article>
+
+        <article class="edu-box">
+          <h3><span>🕊️</span> मांगलिक विचार: भयमुक्त दृष्टिकोण</h3>
+          <p>
+            मंगल ऊर्जा और उत्साह का प्रतीक है। मांगलिक होना कोई अनिष्ट या असाध्य रोग नहीं है। दोनों कुंडलियों में मंगल की स्थिति एक समान होने से सामंजस्य बन जाता है। यदि एक ही मांगलिक हो, तो गुरु की दृष्टि या परिपक्व आयु से मंगल का उग्र स्वभाव संतुलित हो जाता है। बिना किसी डर या महंगे कर्मकांड के परस्पर सम्मान ही सुखी दांपत्य की सच्ची कुंजी है।
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section print-hide" aria-labelledby="matchingFaqTitle">
+      <h2 id="matchingFaqTitle">कुंडली मिलान: प्रायः पूछे जाने वाले प्रश्न (FAQ)</h2>
+      
+      <div class="faq-item">
+        <button type="button" class="faq-question">
+          <span>१. विवाह के लिए ३६ में से कितने गुण मिलना शुभ माना जाता है?</span>
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          पारंपरिक वैदिक ज्योतिष में ३६ में से १८ या अधिक गुणों का मिलना विवाह के लिए ग्राह्य माना जाता है। १८ से २४ गुण मध्यम, २५ से ३२ गुण उत्तम, तथा ३३ से ३६ गुण अति उत्तम माने जाते हैं। १८ से कम गुण होने पर कुंडलियों के अन्य योगों और गुरु-शुक्र की स्थिति का विशेष अध्ययन करना चाहिए।
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-question">
+          <span>२. नाड़ी दोष क्या होता है और क्या इसका परिहार संभव है?</span>
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          अष्टकूट मिलान में नाड़ी के सर्वाधिक ८ अंक होते हैं। वर और वधू की एक ही नाड़ी (आदि, मध्य या अंत्य) होने पर नाड़ी दोष माना जाता है। किंतु यदि दोनों की राशियां भिन्न हों या एक ही राशि में भिन्न नक्षत्र हों अथवा राशि स्वामियों में मित्रता हो, तो शास्त्रों के अनुसार नाड़ी दोष का परिहार हो जाता है और दोष नहीं लगता।
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-question">
+          <span>३. यदि वर या वधू में से कोई एक मांगलिक हो तो क्या विवाह हो सकता है?</span>
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          हाँ, बिल्कुल हो सकता है। यदि दोनों मांगलिक हों तो मंगल का साम्य होकर प्रभाव संतुलित हो जाता है। यदि केवल एक पक्ष मांगलिक हो, तो गुरु की दृष्टि, स्वराशि का मंगल, २८ वर्ष की आयु या दूसरे पक्ष की कुंडली में पाप ग्रहों के समतुल्य भावों में होने से मंगल का प्रभाव निष्प्रभावी हो जाता है।
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button type="button" class="faq-question">
+          <span>४. भकूट दोष (Bhakoot Dosha) क्या है?</span>
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          जब दोनों की चंद्र राशियों के बीच २/१२ (द्विर्द्वादश), ९/५ (नवम-पंचम) या ६/८ (षडाष्टक) का अंतर होता है, तो भकूट दोष माना जाता है (७ अंक कटते हैं)। किंतु यदि दोनों के राशि स्वामी एक ही हों (जैसे मेष-वृश्चिक) या आपस में मित्र हों, तो भकूट दोष का पूर्ण परिहार हो जाता है।
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p style="font-weight: 600; color: #FFFFFF; font-size: 1.05rem;">वैदिक जन्म कुंडली एवं कुंडली मिलान (Kundli Matching)</p>
+      <p class="footer-copy">
+        <a href="/" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">जन्म कुंडली</a>
+        <a href="/matching" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">कुंडली मिलान</a>
+        <a href="/lagna-calculator" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">लग्न कैलकुलेटर</a>
+        <a href="/vimshottari-dasha" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">महादशा</a>
+        <a href="/nakshatra-calculator" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">नक्षत्र</a>
+        <a href="/manglik-dosh" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">मांगलिक दोष</a>
+        <a href="/sade-sati" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">साढ़े साती</a>
+        <a href="/panchang" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">पंचांग</a>
+        <a href="/about" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">हमारे बारे में</a>
+        <a href="/privacy" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">गोपनीयता नीति</a>
+        <a href="/sitemap.xml" style="color:#FFD97D; font-weight: 600;">साइटमैप</a><br><br>
+        संचालित: Python Flask + Swiss Ephemeris (pyswisseph) | OpenStreetMap Nominatim<br>
+        &copy; 2026 वैदिक जन्म कुंडली | AGPL-3.0 Ephemeris Compliance
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/matching.js') }}"></script>
+</body>
+</html>

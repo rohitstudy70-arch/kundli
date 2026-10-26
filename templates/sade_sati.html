@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO: Title & Meta Description with Target Keywords -->
+  <title>शनि साढ़े साती कैलकुलेटर: Shani Sade Sati | Free Kundali</title>
+  <meta name="description" content="शनि साढ़े साती (Shani Sade Sati) कैलकुलेटर हिंदी में। Janam Kundali Hindi Mein चंद्र राशि से साढ़े साती, ढैया, चरण व प्रभाव जानें। Free Kundali सेवा।">
+  <meta name="keywords" content="sade sati, shani sade sati, शनि साढ़े साती, janam kundali hindi mein, free kundali, astrosage kundli, shani dhaiya">
+  <meta name="author" content="Vedic Kundali">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="http://127.0.0.1:5000/sade-sati">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="शनि साढ़े साती कैलकुलेटर: Shani Sade Sati | Free Kundali">
+  <meta property="og:description" content="चंद्र राशि या जन्म विवरण से जानिए शनि की साढ़े साती और ढैया की वर्तमान स्थिति व चरण।">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://127.0.0.1:5000/sade-sati">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <!-- JSON-LD FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "शनि की साढ़े साती (Shani Sade Sati) क्या होती है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "शनि ग्रह एक राशि में लगभग ढाई वर्ष रहता है। जब गोचर का शनि आपकी जन्म चंद्र राशि से १२वें भाव, प्रथम (जन्म राशि) भाव और द्वितीय भाव में भ्रमण करता है, तो इन तीनों राशियों में कुल साढ़े सात वर्ष का समय 'साढ़े साती' कहलाता है।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "क्या साढ़े साती हमेशा कष्टकारी होती है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "नहीं, यह एक सर्वथा भ्रामक धारणा है। शनि देव न्याय और कर्मफल के कारक हैं। यदि व्यक्ति सत्यनिष्ठ, परिश्रमी और अनुशासित है, तो साढ़े साती के दौरान ही वह जीवन की सर्वोच्च ऊंचाइयों, प्रसिद्धि और आध्यात्मिक परिपक्वता को प्राप्त करता है।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "शनि की ढैया क्या होती है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "जब गोचर का शनि जन्म चंद्र राशि से चौथे भाव (कंटक शनि) या आठवें भाव (अष्टम शनि) में भ्रमण करता है, तो उस ढाई वर्ष की अवधि को 'ढैया' कहा जाता है।"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <nav class="main-navbar print-hide" aria-label="मुख्य नेविगेशन बार">
+    <div class="navbar-container">
+      <a href="/" class="navbar-brand">
+        <span class="brand-om">ॐ</span>
+        <span data-i18n="brand_title">वैदिक जन्म कुंडली</span>
+      </a>
+
+      <!-- Desktop & Mobile Links -->
+      <ul class="navbar-menu" id="navbarMenu">
+        <li><a href="/" class="navbar-link" data-i18n="nav_kundli">📜 जन्म कुंडली</a></li>
+        <li><a href="/matching" class="navbar-link" data-i18n="nav_matching">💍 कुंडली मिलान</a></li>
+        <li><a href="/lagna-calculator" class="navbar-link" data-i18n="nav_lagna">🌅 लग्न</a></li>
+        <li><a href="/vimshottari-dasha" class="navbar-link" data-i18n="nav_dasha">⌛ महादशा</a></li>
+        <li><a href="/nakshatra-calculator" class="navbar-link" data-i18n="nav_nakshatra">✨ नक्षत्र</a></li>
+        <li><a href="/manglik-dosh" class="navbar-link" data-i18n="nav_manglik">🔥 मांगलिक दोष</a></li>
+        <li><a href="/sade-sati" class="navbar-link active" data-i18n="nav_sade_sati">🪐 साढ़े साती</a></li>
+        <li><a href="/panchang" class="navbar-link" data-i18n="nav_panchang">📅 पंचांग</a></li>
+      </ul>
+
+      <!-- Right Actions: Language Switcher + Mobile Toggle -->
+      <div class="navbar-actions">
+        <div class="nav-lang-switch">
+          <button type="button" class="nav-lang-btn active" data-set-lang="hi">HI</button>
+          <button type="button" class="nav-lang-btn" data-set-lang="en">EN</button>
+        </div>
+        <button type="button" class="navbar-toggle" id="navbarToggle" aria-label="मेन्यू खोलें">
+          ☰
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-badge">
+        <span>🪐</span>
+        <span>लाहिड़ी अयनांश एवं वास्तविक शनि गोचर पर आधारित</span>
+      </div>
+      <h1 class="site-title">शनि साढ़े साती कैलकुलेटर (Shani Sade Sati)</h1>
+      <p class="site-tagline">जन्म चंद्र राशि से शनि साढ़े साती, ढैया, वर्तमान चरण व तार्किक विवेचना</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="app-layout">
+      <!-- Input Card -->
+      <section class="card print-hide">
+        <div class="card-header">
+          <h2 class="card-title" style="margin: 0;">
+            <span>🪐</span>
+            <span>साढ़े साती स्थिति जानने हेतु विवरण</span>
+          </h2>
+        </div>
+        <div class="card-body">
+          <form id="sade-sati-form">
+            <!-- Mode Toggle: Direct Moon Sign OR Birth Details -->
+            <div style="margin-bottom: 1.25rem;">
+              <label class="form-label">गणना का तरीका चुनें:</label>
+              <div style="display: flex; gap: 1rem;">
+                <label style="cursor: pointer; display: flex; align-items: center; gap: 0.35rem; font-size: 0.95rem;">
+                  <input type="radio" name="calc-mode" value="rashi" checked>
+                  <span>चंद्र राशि सीधे चुनें</span>
+                </label>
+                <label style="cursor: pointer; display: flex; align-items: center; gap: 0.35rem; font-size: 0.95rem;">
+                  <input type="radio" name="calc-mode" value="birth">
+                  <span>जन्म तिथि व समय से निकालें</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Direct Moon Sign Selection -->
+            <div id="mode-rashi-box" class="form-group">
+              <label for="ss-rashi-select" class="form-label required">अपनी जन्म चंद्र राशि चुनें</label>
+              <select id="ss-rashi-select" class="form-control" style="font-weight: 500;">
+                <option value="1">1. मेष (Aries)</option>
+                <option value="2">2. वृषभ (Taurus)</option>
+                <option value="3">3. मिथुन (Gemini)</option>
+                <option value="4">4. कर्क (Cancer)</option>
+                <option value="5">5. सिंह (Leo)</option>
+                <option value="6">6. कन्या (Virgo)</option>
+                <option value="7">7. तुला (Libra)</option>
+                <option value="8" selected>8. वृश्चिक (Scorpio)</option>
+                <option value="9">9. धनु (Sagittarius)</option>
+                <option value="10">10. मकर (Capricorn)</option>
+                <option value="11">11. कुम्भ (Aquarius)</option>
+                <option value="12">12. मीन (Pisces)</option>
+              </select>
+              <span class="form-hint">यदि अपनी चंद्र राशि ज्ञात नहीं है, तो ऊपर 'जन्म तिथि व समय से निकालें' विकल्प चुनें।</span>
+            </div>
+
+            <!-- Birth Details (Hidden by default) -->
+            <div id="mode-birth-box" class="hidden">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="ss-birth-date" class="form-label required">जन्म तिथि</label>
+                  <input type="date" id="ss-birth-date" class="form-control" value="1995-05-15">
+                </div>
+                <div class="form-group">
+                  <label for="ss-birth-time" class="form-label required">जन्म समय</label>
+                  <input type="time" id="ss-birth-time" class="form-control" step="1" value="10:30:00">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="ss-place-search" class="form-label required">जन्म स्थान</label>
+                <div class="autocomplete-wrapper">
+                  <input type="text" id="ss-place-search" class="form-control" value="नई दिल्ली, भारत" placeholder="शहर खोजें...">
+                  <div id="ss-place-suggestions" class="suggestions-dropdown hidden"></div>
+                </div>
+              </div>
+              <input type="hidden" id="ss-latitude" value="28.6139">
+              <input type="hidden" id="ss-longitude" value="77.2090">
+              <input type="hidden" id="ss-timezone" value="Asia/Kolkata">
+            </div>
+
+            <div id="ss-error-banner" class="error-banner hidden" role="alert"></div>
+
+            <button type="submit" class="btn btn-primary btn-block" style="margin-top: 1rem;">
+              <span>🪐</span>
+              <span>साढ़े साती स्थिति की जांच करें</span>
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- Results Display -->
+      <section class="card" id="sade-sati-result-card">
+        <div class="card-header">
+          <h2 class="card-title" style="margin: 0;">
+            <span>🛡️</span>
+            <span>शनि साढ़े साती एवं ढैया विश्लेषण</span>
+          </h2>
+        </div>
+        <div class="card-body">
+          <div id="ss-loading" class="hidden" style="text-align: center; padding: 2rem;">
+            <div class="spinner-sm" style="margin: 0 auto 1rem; width: 36px; height: 36px;"></div>
+            <p style="color: var(--color-ink-muted);">वर्तमान गोचर शनि और चंद्र राशि की खगोलीय गणना जारी है...</p>
+          </div>
+
+          <div id="ss-content">
+            <!-- Phase Status Card -->
+            <div id="ss-status-box" style="padding: 1.25rem; border-radius: 8px; margin-bottom: 1.5rem; background: var(--color-bg-warm); border-left: 5px solid var(--color-primary);">
+              <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+                <h3 id="ss-status-title" style="margin: 0; font-family: var(--font-heading); font-size: 1.25rem; color: var(--color-primary);">
+                  साढ़े साती स्थिति
+                </h3>
+                <span id="ss-status-badge" style="display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px; font-weight: 600; font-size: 0.85rem; background: #2E7D32; color: #fff;">
+                  गणना जारी
+                </span>
+              </div>
+              <p id="ss-status-desc" style="margin: 0; color: var(--color-ink-muted); line-height: 1.6;">
+                विवरण दर्ज करें।
+              </p>
+            </div>
+
+            <!-- Astronomical Transit Table -->
+            <h4 style="font-family: var(--font-heading); color: var(--color-ink); margin-bottom: 0.75rem;">
+              वर्तमान खगोलीय स्थिति (लाहिड़ी अयनांश)
+            </h4>
+            <div class="table-container" style="margin-bottom: 1.5rem;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>मापदंड</th>
+                    <th>स्थिति विवरण</th>
+                    <th>महत्व</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>आपकी जन्म चंद्र राशि</strong></td>
+                    <td id="ss-natal-rashi-val" style="font-weight: 600; color: var(--color-primary);">-</td>
+                    <td>जिस राशि में जन्म के समय चंद्रमा था</td>
+                  </tr>
+                  <tr>
+                    <td><strong>वर्तमान गोचर शनि</strong></td>
+                    <td id="ss-transit-sat-val" style="font-weight: 600;">-</td>
+                    <td>वर्तमान समय में आकाश में शनि का संचरण</td>
+                  </tr>
+                  <tr>
+                    <td><strong>वर्तमान प्रभाव चरण</strong></td>
+                    <td id="ss-phase-val" style="font-weight: 600;">-</td>
+                    <td>साढ़े साती/ढैया का विशिष्ट चरण</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Three Phases Explanatory Guide -->
+            <div style="background: #FFFDF9; border: 1px solid var(--color-border); border-radius: 8px; padding: 1.25rem;">
+              <h4 style="font-family: var(--font-heading); color: var(--color-accent-terracotta); margin-top: 0; margin-bottom: 0.5rem;">
+                📖 साढ़े साती के तीन चरण: अर्थ व वास्तविकता
+              </h4>
+              <ul style="margin: 0; padding-left: 1.25rem; line-height: 1.7; color: var(--color-ink);">
+                <li><strong>प्रथम चरण (उदय - १२वां भाव):</strong> खर्चों, दूरस्थ यात्राओं और मानसिक अनुशासन का काल। नया दृष्टिकोण विकसित होता है।</li>
+                <li><strong>द्वितीय चरण (शिखर - जन्म राशि):</strong> आत्म-मूल्यांकन, कठिन परिश्रम और धैर्य का समय। कर्मों की कड़ी परीक्षा।</li>
+                <li><strong>तृतीय चरण (अस्त - २रा भाव):</strong> आर्थिक स्थिरता, पारिवारिक दायित्वों की पूर्ति और पूर्व परिश्रम के फल की प्राप्ति।</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Educational Pillars -->
+    <section class="card" style="margin-top: 2rem;">
+      <div class="card-header">
+        <h2 class="card-title" style="margin: 0;">
+          <span>📖</span>
+          <span>शनि साढ़े साती: भय बनाम सत्य</span>
+        </h2>
+      </div>
+      <div class="card-body">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <div>
+            <h3 style="font-family: var(--font-heading); color: var(--color-primary); font-size: 1.15rem;">
+              शनि साढ़े साती क्या है?
+            </h3>
+            <p style="line-height: 1.7; color: var(--color-ink-muted);">
+              शनि सौरमंडल का सबसे मंद गति से चलने वाला ग्रह है, जो क्रांतिवृत्त की एक राशि पार करने में ढाई वर्ष लेता है। चंद्र राशि से बारहवीं, स्वयं चंद्र राशि और दूसरी राशि — इन तीन राशियों में भ्रमण करने में शनि को कुल साढ़े सात वर्ष का समय लगता है, जिसे 'साढ़े साती' कहा जाता है। यह व्यक्ति के जीवन में लगभग हर ३० वर्ष के अंतराल पर एक बार आती है।
+            </p>
+          </div>
+
+          <div>
+            <h3 style="font-family: var(--font-heading); color: var(--color-primary); font-size: 1.15rem;">
+              शनि देव: कर्मफल और न्याय के प्रदाता
+            </h3>
+            <p style="line-height: 1.7; color: var(--color-ink-muted);">
+              वैदिक परंपरा में शनि को क्रूर नहीं, बल्कि 'दंडाधिकारी' व निष्पक्ष न्यायाधीश माना गया है। जैसे सोना आग में तपकर कुंदन बनता है, वैसे ही साढ़े साती व्यक्ति के अहंकार, आलस्य और भ्रांतियों को दूर कर उसे कर्तव्यनिष्ठ, सहनशील और परिपक्व बनाती है। दुनिया के अधिकांश महानतम कार्य इसी अवधि में सिद्ध हुए हैं।
+            </p>
+          </div>
+
+          <div>
+            <h3 style="font-family: var(--font-heading); color: var(--color-primary); font-size: 1.15rem;">
+              सच्चे उपाय: सेवा, संयम और अनुशासन
+            </h3>
+            <p style="line-height: 1.7; color: var(--color-ink-muted);">
+              साढ़े साती के भय से महंगे रत्न या अनुष्ठानों के फेर में पड़ना व्यर्थ है। शास्त्रों में शनि की प्रसन्नता का सर्वोत्तम मार्ग वृद्धों, असहायों, श्रमजीवियों की सेवा, ईमानदारी से कार्य करना और वाणी में विनम्रता रखना बताया गया है। सदाचार ही सबसे बड़ा कवच है।
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3 class="footer-col-title">वैदिक जन्म कुंडली</h3>
+          <p class="footer-desc">
+            प्राचीन भारतीय ज्योतिष के खगोलीय सिद्धांतों और स्विस एफेमेरिस की सूक्ष्म गणनाओं पर आधारित नि:शुल्क सेवा।
+          </p>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">महत्वपूर्ण लिंक</h3>
+          <ul class="footer-links">
+            <li><a href="/">जन्म कुंडली (Kundli)</a></li>
+            <li><a href="/matching">कुंडली मिलान (Matching)</a></li>
+            <li><a href="/lagna-calculator">लग्न कैलकुलेटर (Lagna)</a></li>
+            <li><a href="/vimshottari-dasha">विंशोत्तरी महादशा (Dasha)</a></li>
+            <li><a href="/nakshatra-calculator">नक्षत्र कैलकुलेटर (Nakshatra)</a></li>
+            <li><a href="/manglik-dosh">मांगलिक दोष कैलकुलेटर</a></li>
+            <li><a href="/sade-sati">शनि साढ़े साती</a></li>
+            <li><a href="/panchang">दैनिक पंचांग (Panchang)</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3 class="footer-col-title">नीति एवं नियम</h3>
+          <ul class="footer-links">
+            <li><a href="/about">हमारे बारे में (About)</a></li>
+            <li><a href="/privacy">गोपनीयता नीति (Privacy)</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          © 2026 वैदिक जन्म कुंडली (Vedic Kundali). सर्वाधिकार सुरक्षित।
+        </p>
+        <p class="footer-license">
+          Ephemeris data powered by Swiss Ephemeris under AGPL-3.0 License.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Radio toggle between Moon sign and birth details
+    const modeRadios = document.querySelectorAll('input[name="calc-mode"]');
+    const rashiBox = document.getElementById("mode-rashi-box");
+    const birthBox = document.getElementById("mode-birth-box");
+
+    modeRadios.forEach(r => {
+      r.addEventListener("change", (e) => {
+        if (e.target.value === "rashi") {
+          rashiBox.classList.remove("hidden");
+          birthBox.classList.add("hidden");
+        } else {
+          rashiBox.classList.add("hidden");
+          birthBox.classList.remove("hidden");
+        }
+      });
+    });
+
+    const form = document.getElementById("sade-sati-form");
+
+    function fetchSadeSati() {
+      const mode = document.querySelector('input[name="calc-mode"]:checked').value;
+      const loading = document.getElementById("ss-loading");
+      const content = document.getElementById("ss-content");
+      const errBanner = document.getElementById("ss-error-banner");
+
+      errBanner.classList.add("hidden");
+      loading.classList.remove("hidden");
+      content.classList.add("hidden");
+
+      if (mode === "rashi") {
+        const rashiId = parseInt(document.getElementById("ss-rashi-select").value, 10);
+        fetch(`/api/sade-sati?moon_rashi_id=${rashiId}`)
+          .then(r => r.json())
+          .then(res => {
+            loading.classList.add("hidden");
+            content.classList.remove("hidden");
+            if (!res.success) {
+              errBanner.textContent = res.message || "त्रुटि हुई।";
+              errBanner.classList.remove("hidden");
+              return;
+            }
+            renderSadeSati(res.data);
+          })
+          .catch(err => {
+            loading.classList.add("hidden");
+            content.classList.remove("hidden");
+            errBanner.textContent = "सर्वर त्रुटि: " + err;
+            errBanner.classList.remove("hidden");
+          });
+      } else {
+        // Calculate full chart to get Moon rashi first
+        const bDate = document.getElementById("ss-birth-date").value;
+        const bTime = document.getElementById("ss-birth-time").value;
+        const lat = document.getElementById("ss-latitude").value;
+        const lon = document.getElementById("ss-longitude").value;
+        const tz = document.getElementById("ss-timezone").value;
+
+        fetch("/api/calculate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            birth_date: bDate,
+            birth_time: bTime,
+            latitude: lat,
+            longitude: lon,
+            timezone: tz
+          })
+        })
+        .then(r => r.json())
+        .then(chartRes => {
+          if (!chartRes.success) {
+            throw new Error(chartRes.message || "कुंडली गणना विफल।");
+          }
+          const moon = chartRes.data.grahas.find(g => g.id === "MOON");
+          const moonRashiId = moon ? moon.rashi.id : 1;
+          return fetch(`/api/sade-sati?moon_rashi_id=${moonRashiId}`);
+        })
+        .then(r => r.json())
+        .then(res => {
+          loading.classList.add("hidden");
+          content.classList.remove("hidden");
+          if (!res.success) {
+            errBanner.textContent = res.message || "त्रुटि हुई।";
+            errBanner.classList.remove("hidden");
+            return;
+          }
+          renderSadeSati(res.data);
+        })
+        .catch(err => {
+          loading.classList.add("hidden");
+          content.classList.remove("hidden");
+          errBanner.textContent = "त्रुटि: " + err;
+          errBanner.classList.remove("hidden");
+        });
+      }
+    }
+
+    function renderSadeSati(data) {
+      document.getElementById("ss-status-title").textContent = `स्थिति: ${data.status}`;
+      const badge = document.getElementById("ss-status-badge");
+      badge.textContent = data.phase;
+      badge.style.background = data.badge_color || "#2E7D32";
+
+      document.getElementById("ss-status-desc").textContent = data.description;
+
+      document.getElementById("ss-natal-rashi-val").textContent = `${data.natal_rashi.name_hi} (${data.natal_rashi.symbol} ${data.natal_rashi.name_en}) - स्वामी: ${data.natal_rashi.lord_hi}`;
+      
+      const retro = data.saturn_is_retrograde ? " (वक्री)" : " (मार्गी)";
+      document.getElementById("ss-transit-sat-val").textContent = `${data.saturn_current_rashi.name_hi} राशि (${data.saturn_deg}°)${retro}`;
+
+      document.getElementById("ss-phase-val").textContent = data.phase;
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      fetchSadeSati();
+    });
+
+    // Auto-load on page load
+    window.addEventListener("DOMContentLoaded", fetchSadeSati);
+  </script>
+</body>
+</html>

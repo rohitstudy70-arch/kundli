@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO: Title (Under 60 chars) & Meta Description (Under 155 chars) with Target Keywords -->
+  <title>Janam Kundali Hindi Mein: Free Kundali | Astrosage Kundli</title>
+  <meta name="description" content="Janam Kundali Hindi Mein muft banayein. Free kundali, lagna kaise nikale, navgraha sthiti aur vimshottari dasha payein jaisa Astrosage kundli par milta hai.">
+  <meta name="keywords" content="janam kundali hindi mein, free kundali, astrosage kundli, lagna kaise nikale, vimshottari dasha, nakshatra kaise pata kare, kundali">
+  <meta name="author" content="Vedic Kundali">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="http://127.0.0.1:5000/">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="वैदिक जन्म कुंडली - सटीक ग्रह स्थिति व महादशा">
+  <meta property="og:description" content="मुफ्त जन्म कुंडली हिंदी में बनाएं। लाहिड़ी अयनांश, लग्न, नवग्रह स्थिति व विंशोत्तरी महादशा की सटीक गणना प्राप्त करें।">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://127.0.0.1:5000/">
+  <meta property="og:locale" content="hi_IN">
+
+  <!-- Devanagari Google Fonts: Tiro Devanagari Hindi for Headings, Noto Sans Devanagari for Body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Tiro+Devanagari+Hindi:ital@0;1&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <!-- JSON-LD FAQPage Schema for all 8 FAQs -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "जन्म समय कुछ मिनट गलत हो तो कुंडली पर क्या फर्क पड़ता है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "पृथ्वी अपनी धुरी पर 24 घंटे में 360 अंश घूमती है, जिसका अर्थ है कि लगभग प्रति 4 मिनट में 1 अंश की गति होती है और औसतन 2 घंटे में लग्न राशि बदल जाती है। यदि जन्म समय में केवल 5 से 10 मिनट का भी अंतर हो, तो विशेष रूप से संधि लग्न (दो राशियों के मिलन बिंदु) पर लग्न राशि बदल सकती है। इसके अतिरिक्त, नवमांश कुंडली (D9) और विंशोत्तरी दशा के प्रारंभ समय में महीनों का अंतर आ सकता है। इसलिए सटीक जन्म समय अत्यंत आवश्यक है।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "जन्म स्थान और टाइमज़ोन (Timezone) की सही जानकारी क्यों जरूरी है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "लग्न और भावों की खगोलीय स्थिति स्थानीय क्षितिज (Local Horizon) से तय होती है, जो जन्म स्थान के सटीक अक्षांश (Latitude) और देशांतर (Longitude) पर निर्भर करती है। इसके अलावा, सही IANA टाइमज़ोन न होने पर स्थानीय समय को ग्रीनविच समय (UTC) में बदलते समय त्रुटि हो सकती है। हमारा इंजन Python zoneinfo का उपयोग करके स्वतंत्रता पूर्व भारत के ऐतिहासिक समय परिवर्तनों (जैसे द्वितीय विश्व युद्ध का War Daylight Time +06:30) को भी स्वतः सही करता है।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "लग्न (Ascendant) की गणना कैसे होती है और लग्न कैसे निकालें?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "लग्न की गणना के लिए सबसे पहले जातक के जन्म समय को स्थानीय नाक्षत्र समय (Local Sidereal Time / RAMC) में बदला जाता है। इसके पश्चात जन्म स्थान के अक्षांश के आधार पर पूर्वी क्षितिज और क्रांतिवृत्त (Ecliptic) के प्रतिच्छेदन बिंदु का कोण निकाला जाता है। इसमें से आधिकारिक लाहिड़ी अयनांश घटाने पर निरयण लग्न स्पष्ट (Sidereal Ascendant) प्राप्त होता है, जो कुंडली का प्रथम भाव बनता है।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "अयनांश (Ayanamsa) क्या है और लाहिड़ी अयनांश ही क्यों चुना जाता है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "पृथ्वी के घूर्णन अक्ष के धीमी गति से डोलने (Precession of Equinoxes) के कारण सायन (Tropical) और निरयण (Sidereal) राशियों के मध्य एक कोणीय दूरी उत्पन्न हो जाती है, जिसे अयनांश कहते हैं। लाहिड़ी अयनांश (चित्रापक्ष) को भारत सरकार की कैलेंडर सुधार समिति (1955) द्वारा आधिकारिक राष्ट्रीय मानक घोषित किया गया है, जो चित्रा नक्षत्र के ठीक सामने 180 अंश पर तुला राशि की शुरुआत को आधार मानता है।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "राशि और नक्षत्र में क्या मूलभूत अंतर है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "राशि भचक्र का 30 अंश का एक बड़ा विभाजन है (कुल 12 राशियां = 360 अंश), जबकि नक्षत्र 13 अंश 20 कला (800 कला) का अधिक सूक्ष्म विभाजन है (कुल 27 नक्षत्र = 360 अंश)। एक राशि में सवा दो (2.25) नक्षत्र अथवा 9 चरण समाहित होते हैं। राशि व्यक्ति के स्थूल स्वभाव को दर्शाती है, जबकि नक्षत्र और उसके चरण आंतरिक प्रवृत्तियों, नामकरण और विंशोत्तरी दशा के निर्धारण में निर्णायक होते हैं।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "क्या विंशोत्तरी महादशा का फल हर व्यक्ति के लिए समान होता है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "कदापि नहीं। विंशोत्तरी दशा के परिणाम इस बात पर निर्भर करते हैं कि संबंधित दशा स्वामी ग्रह जातक की कुंडली में किस लग्न के अनुसार किन भावों का स्वामी है, वह किस भाव में बैठा है, किस राशि व नक्षत्र में है, उस पर किन शुभ या अशुभ ग्रहों की दृष्टि है और उसकी षडबल शक्ति कैसी है। उदाहरणार्थ, मेष लग्न के लिए गुरु नवमेश व द्वादशेश होकर शुभ फल देता है, जबकि वृषभ लग्न के लिए गुरु अष्टमेश होने से भिन्न फल देता है।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "मांगलिक होना क्या वास्तव में कोई बड़ा अनिष्ट या दोष है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "बिल्कुल नहीं। पारंपरिक ग्रंथों में केवल 1, 4, 7, 8 या 12वें भाव में मंगल होने पर जातक में अत्यधिक ऊर्जा, दृढ़ता और स्पष्टवादिता मानी गई है। इसे समाज में अनुचित भय का साधन बना दिया गया है। गुरु की दृष्टि, स्वराशि या उच्च राशि का मंगल, अथवा 28 वर्ष की आयु के पश्चात मंगल का उग्र प्रभाव स्वाभाविक रूप से संतुलित हो जाता है। अतः डरने या महंगे अनुष्ठान कराने की कोई आवश्यकता नहीं है।"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "शनि की साढ़े साती क्या हमेशा कष्टकारी और अनिष्टकारक ही होती है?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "यह एक बड़ा भ्रम है कि साढ़े साती केवल विपत्ति लाती है। शनि न्याय और यथार्थ के देवता हैं। साढ़े साती के साढ़े सात वर्ष व्यक्ति को आलस्य और अहंकार छोड़कर यथार्थवादी, अनुशासित और परिश्रमी बनने की सीख देते हैं। वृषभ, तुला, मकर और कुंभ राशि वालों के लिए शनि मित्र या स्वग्रही होने के कारण साढ़े साती में करियर, प्रतिष्ठा और संपत्ति की अभूतपूर्व उन्नति भी प्रदान करते हैं।"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <nav class="main-navbar print-hide" aria-label="मुख्य नेविगेशन बार">
+    <div class="navbar-container">
+      <a href="/" class="navbar-brand">
+        <span class="brand-om">ॐ</span>
+        <span data-i18n="brand_title">वैदिक जन्म कुंडली</span>
+      </a>
+
+      <!-- Desktop & Mobile Links -->
+      <ul class="navbar-menu" id="navbarMenu">
+        <li><a href="/" class="navbar-link active" data-i18n="nav_kundli">📜 जन्म कुंडली</a></li>
+        <li><a href="/matching" class="navbar-link" data-i18n="nav_matching">💍 कुंडली मिलान</a></li>
+        <li><a href="/lagna-calculator" class="navbar-link" data-i18n="nav_lagna">🌅 लग्न</a></li>
+        <li><a href="/vimshottari-dasha" class="navbar-link" data-i18n="nav_dasha">⌛ महादशा</a></li>
+        <li><a href="/nakshatra-calculator" class="navbar-link" data-i18n="nav_nakshatra">✨ नक्षत्र</a></li>
+        <li><a href="/manglik-dosh" class="navbar-link" data-i18n="nav_manglik">🔥 मांगलिक दोष</a></li>
+        <li><a href="/sade-sati" class="navbar-link" data-i18n="nav_sade_sati">🪐 साढ़े साती</a></li>
+        <li><a href="/panchang" class="navbar-link" data-i18n="nav_panchang">📅 पंचांग</a></li>
+      </ul>
+
+      <!-- Right Actions: Language Switcher + Mobile Toggle -->
+      <div class="navbar-actions">
+        <div class="nav-lang-switch">
+          <button type="button" class="nav-lang-btn active" data-set-lang="hi">HI</button>
+          <button type="button" class="nav-lang-btn" data-set-lang="en">EN</button>
+        </div>
+        <button type="button" class="navbar-toggle" id="navbarToggle" aria-label="मेन्यू खोलें">
+          ☰
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Site Hero Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="site-badge">
+        <span>ॐ</span>
+        <span>सटीक स्विस एफिमेरिस गणना प्रणाली</span>
+      </div>
+      <h1 class="site-title" data-i18n="site_title">सटीक वैदिक जन्म कुंडली (Janam Kundali)</h1>
+      <p class="site-tagline" data-i18n="site_tagline">लाहिड़ी अयनांश, सम्पूर्ण राशि भाव एवं विंशोत्तरी महादशा चक्र पर आधारित प्रामाणिक जन्म पत्रिका</p>
+    </div>
+  </header>
+
+
+  <!-- Print Only Header -->
+  <div class="print-header">
+    <h2 id="print_user_name">{{ initial_chart.user_info.name if initial_chart else 'जातक' }} की जन्म कुंडली</h2>
+    <p id="print_birth_details">{{ initial_chart.user_info.birth_date_local if initial_chart else '' }} | {{ initial_chart.user_info.birth_time_local if initial_chart else '' }} | {{ initial_chart.place_name if initial_chart else '' }}</p>
+    <p id="print_lagna_details">लग्न: {{ initial_chart.lagna.rashi.name_hi if initial_chart else '' }} ({{ initial_chart.lagna.deg_dms if initial_chart else '' }}) | नक्षत्र: {{ initial_chart.panchang.nakshatra if initial_chart else '' }} | अयनांश: {{ initial_chart.ayanamsa.formatted if initial_chart else '' }}</p>
+  </div>
+
+  <main class="container">
+
+    <!-- Breadcrumb Navigation (Prokerala style) -->
+    <nav class="breadcrumb-nav print-hide" aria-label="ब्रेडक्रम्ब">
+      <a href="/" data-i18n="bc_home">होम</a>
+      <span class="breadcrumb-separator">›</span>
+      <a href="/" data-i18n="bc_astro">ज्योतिष</a>
+      <span class="breadcrumb-separator">›</span>
+      <span class="breadcrumb-current" data-i18n="bc_current">जन्म कुंडली हिंदी में</span>
+    </nav>
+
+    <!-- Home Page Intro: Kundali Kya Hai (130 words) -->
+    <section id="kundli-intro" class="card print-hide" style="background: linear-gradient(180deg, #FFFFFF 0%, #FDF9F2 100%); border-left: 4px solid var(--primary-vermilion); margin-bottom: 2rem;">
+      <h2 style="margin-top: 0; color: var(--primary-dark);">जन्म कुंडली क्या है? (What is Janam Kundali)</h2>
+      <p style="font-size: 1rem; line-height: 1.75; color: var(--text-primary); margin: 0;">
+        वैदिक ज्योतिष में जन्म कुंडली किसी व्यक्ति के जन्म के क्षण का वास्तविक खगोलीय मानचित्र होती है। जिस समय और जिस भौगोलिक स्थान पर जातक का जन्म होता है, उस समय आकाश मंडल में सूर्य, चंद्रमा, मंगल, बुध, गुरु, शुक्र, शनि, राहु और केतु की क्या स्थिति थी, इसे एक निश्चित ज्यामितीय चक्र में अंकित किया जाता है। कुंडली के बारह खाने यानी भाव जीवन के बारह महत्वपूर्ण क्षेत्रों जैसे स्वास्थ्य, धन, परिवार, शिक्षा, संतान, रोग, वैवाहिक सुख, आयु, भाग्य, आजीविका, लाभ और मोक्ष का विश्लेषण करने का माध्यम बनते हैं। यह कोई अंधविश्वास या जादू नहीं, बल्कि प्राचीन भारतीय ऋषियों द्वारा आकाश के ग्रह-नक्षत्रों के गणितीय अध्ययन पर आधारित एक पारंपरिक दार्शनिक व्यवस्था है, जो व्यक्ति को अपनी अंतर्निहित क्षमताओं और जीवन पथ को समझने में सहायता करती है।
+      </p>
+      <div style="margin-top: 0.85rem; font-size: 0.88rem; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 1rem;">
+        <span>🎯 <strong>टारगेट:</strong> janam kundali hindi mein | free kundali | lagna kaise nikale | vimshottari dasha | nakshatra kaise pata kare</span>
+      </div>
+    </section>
+
+    <!-- Main Grid Layout -->
+    <div class="app-layout">
+
+      <!-- Left Column: Input Form (Hindi Labels) -->
+      <section class="form-card card print-hide" aria-labelledby="formTitle">
+        <div class="card-header">
+          <h2 id="formTitle" class="card-title">
+            <span>☀️</span>
+            <span data-i18n="form_title">अपना जन्म विवरण डालें</span>
+          </h2>
+        </div>
+
+        <div id="formAlert" class="alert alert-danger" style="display: none;" role="alert"></div>
+
+        <form id="kundliForm" novalidate>
+          <!-- 1. Naam (नाम) -->
+          <div class="form-group">
+            <label for="name" class="form-label" data-i18n="lbl_name">नाम (Name)<span class="required">*</span></label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="आपका नाम (उदा. रोहित शर्मा)" value="{{ defaults.name }}" required autocomplete="name">
+            <div id="name_error" class="field-error-msg"></div>
+          </div>
+
+          <!-- 2. Ling (लिंग) -->
+          <div class="form-group">
+            <label class="form-label" data-i18n="lbl_gender">लिंग (Gender)<span class="required">*</span></label>
+            <div class="radio-group" role="radiogroup" aria-label="लिंग चयन">
+              <label class="radio-option">
+                <input type="radio" name="gender" value="पुरुष" {% if defaults.gender == 'पुरुष' %}checked{% endif %}>
+                <span class="radio-tile" data-i18n="lbl_male">पुरुष</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="gender" value="महिला" {% if defaults.gender == 'महिला' %}checked{% endif %}>
+                <span class="radio-tile" data-i18n="lbl_female">महिला</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="gender" value="अन्य" {% if defaults.gender == 'अन्य' %}checked{% endif %}>
+                <span class="radio-tile" data-i18n="lbl_other">अन्य</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 3. Janm Tithi (जन्म तिथि) -->
+          <div class="form-group">
+            <label for="birth_date" class="form-label" data-i18n="lbl_dob">जन्म तिथि (Date of Birth)<span class="required">*</span></label>
+            <input type="date" id="birth_date" name="birth_date" class="form-control" value="{{ defaults.birth_date }}" required>
+            <div id="birth_date_error" class="field-error-msg"></div>
+          </div>
+
+          <!-- 4. Janm Samay (जन्म समय) -->
+          <div class="form-group">
+            <label for="birth_time" class="form-label" data-i18n="lbl_tob">जन्म समय (Birth Time)<span class="required">*</span></label>
+            <input type="time" id="birth_time" name="birth_time" step="1" class="form-control" value="{{ defaults.birth_time }}" required>
+            <div id="birth_time_error" class="field-error-msg"></div>
+          </div>
+
+          <!-- 5. Janm Sthan (जन्म स्थान) with OpenStreetMap Nominatim -->
+          <div class="form-group">
+            <label for="place_name" class="form-label" data-i18n="lbl_pob">जन्म स्थान (Birth Place)<span class="required">*</span></label>
+            <div class="autocomplete-wrapper">
+              <input type="text" id="place_name" name="place_name" class="form-control" placeholder="उदा. नई दिल्ली, मुंबई, जयपुर..." value="{{ defaults.place_name }}" required autocomplete="off">
+              <span id="placeSpinner" class="autocomplete-spinner">खोज रहे हैं...</span>
+              <div id="placeDropdown" class="autocomplete-dropdown" role="listbox"></div>
+            </div>
+            <div id="place_name_error" class="field-error-msg"></div>
+            <small style="color: var(--text-muted); font-size: 0.8rem; display: block; margin-top: 4px;" data-i18n="pob_help">
+              स्थान का नाम टाइप करें और सूची से चुनें (अक्षांश व देशांतर स्वतः भरे जाएंगे)।
+            </small>
+          </div>
+
+          <!-- Hidden Geo & Timezone Fields (Auto-filled by Nominatim) -->
+          <input type="hidden" id="latitude" name="latitude" value="{{ defaults.latitude }}">
+          <input type="hidden" id="longitude" name="longitude" value="{{ defaults.longitude }}">
+          <input type="hidden" id="timezone" name="timezone" value="{{ defaults.timezone }}">
+
+          <button type="submit" id="submitBtn" class="btn btn-primary btn-submit-kundli">
+            <span>☀️</span>
+            <span data-i18n="btn_submit">कुंडली प्राप्त करें (Get Kundali)</span>
+          </button>
+        </form>
+      </section>
+
+      <!-- Right Column: Results Container -->
+      <section id="kundliResultsContainer">
+
+        <!-- Top Action Bar (Print & Info) -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;" class="print-hide">
+          <h2 style="margin: 0;" data-i18n="report_title">विस्तृत जन्म पत्रिका रिपोर्ट</h2>
+          <button type="button" id="printBtn" class="btn btn-gold" aria-label="कुंडली प्रिंट करें या पीडीएफ के रूप में सहेजें">
+            <span>🖨️</span>
+            <span data-i18n="btn_print">प्रिंट / PDF सहेजें</span>
+          </button>
+        </div>
+
+        <!-- Prokerala-Style Report Tabs Bar -->
+        <div class="report-tabs-wrapper print-hide">
+          <div class="report-tabs" role="tablist" aria-label="कुंडली रिपोर्ट टैब्स">
+            <button type="button" class="report-tab-btn active" data-tab="tab-charts" role="tab" aria-selected="true">
+              <span>🔮</span>
+              <span data-i18n="tab_charts">कुंडली चक्र</span>
+            </button>
+            <button type="button" class="report-tab-btn" data-tab="tab-avakhada" role="tab" aria-selected="false">
+              <span>📜</span>
+              <span data-i18n="tab_avakhada">अवकहड़ा चक्र</span>
+            </button>
+            <button type="button" class="report-tab-btn" data-tab="tab-planets" role="tab" aria-selected="false">
+              <span>🪐</span>
+              <span data-i18n="tab_planets">ग्रह स्थिति</span>
+            </button>
+            <button type="button" class="report-tab-btn" data-tab="tab-houses" role="tab" aria-selected="false">
+              <span>🏠</span>
+              <span data-i18n="tab_houses">भाव विचार</span>
+            </button>
+            <button type="button" class="report-tab-btn" data-tab="tab-dasha" role="tab" aria-selected="false">
+              <span>⌛</span>
+              <span data-i18n="tab_dasha">विंशोत्तरी दशा</span>
+            </button>
+            <button type="button" class="report-tab-btn" data-tab="tab-doshas" role="tab" aria-selected="false">
+              <span>🛡️</span>
+              <span data-i18n="tab_doshas">दोष एवं योग</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB 1: 🔮 कुंडली चक्र (Charts with Switcher) -->
+        <div id="tab-charts" class="report-tab-panel active">
+          <div class="card">
+            <!-- Chart Switcher -->
+            <div class="chart-switcher-container print-hide">
+              <button type="button" class="chart-switch-btn active" data-chart="d1">
+                <span>📜</span>
+                <span data-i18n="chart_d1">लग्न कुंडली (D1)</span>
+              </button>
+              <button type="button" class="chart-switch-btn" data-chart="d9">
+                <span>💍</span>
+                <span data-i18n="chart_d9">नवमांश कुंडली (D9)</span>
+              </button>
+              <button type="button" class="chart-switch-btn" data-chart="chandra">
+                <span>🌙</span>
+                <span data-i18n="chart_chandra">चंद्र कुंडली (Chandra)</span>
+              </button>
+              <button type="button" class="chart-switch-btn" data-chart="south">
+                <span>🔲</span>
+                <span data-i18n="chart_south">दक्षिण भारतीय (South)</span>
+              </button>
+            </div>
+
+            <!-- SVG Container -->
+            <div class="kundli-chart-wrapper">
+              <div id="kundliSvgContainer">
+                {% if initial_chart and initial_chart.chart_svg %}
+                  {{ initial_chart.chart_svg | safe }}
+                {% endif %}
+              </div>
+              <div class="chart-legend">
+                <span class="legend-item"><span class="legend-color-box" style="background:#FFF8E7;"></span> केंद्र भाव (१, ४, ७, १०)</span>
+                <span class="legend-item"><span class="legend-color-box" style="background:#FFFFFF;"></span> त्रिकोण व अन्य भाव</span>
+                <span class="legend-item"><strong style="color:#8C2D19;">१..१२</strong> राशि संख्या</span>
+                <span class="legend-item"><strong style="color:#C62828;">(व)</strong> वक्री ग्रह</span>
+              </div>
+            </div>
+
+            <!-- Quick Summary Grid -->
+            <div class="details-grid" style="margin-top: 1.25rem;">
+              <div class="detail-pill">
+                <span class="detail-pill-label">जन्म लग्न (तनु)</span>
+                <span id="val_lagna" class="detail-pill-val">{{ initial_chart.lagna.rashi.name_hi if initial_chart else '—' }} ({{ initial_chart.lagna.deg_dms if initial_chart else '—' }})</span>
+              </div>
+              <div class="detail-pill">
+                <span class="detail-pill-label">चंद्र राशि</span>
+                <span id="val_moon_rashi" class="detail-pill-val">{{ initial_chart.panchang.moon_rashi if initial_chart else '—' }}</span>
+              </div>
+              <div class="detail-pill">
+                <span class="detail-pill-label">जन्म नक्षत्र</span>
+                <span id="val_nakshatra" class="detail-pill-val">{{ initial_chart.panchang.nakshatra if initial_chart else '—' }}</span>
+              </div>
+              <div class="detail-pill">
+                <span class="detail-pill-label">लाहिड़ी अयनांश</span>
+                <span id="val_ayanamsa" class="detail-pill-val" style="font-size: 0.88rem;">{{ initial_chart.ayanamsa.formatted if initial_chart else '—' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: 📜 अवकहड़ा चक्र एवं पंचांग -->
+        <div id="tab-avakhada" class="report-tab-panel">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <span>📜</span>
+                <span>अवकहड़ा चक्र (Avakhada Chakra)</span>
+              </h3>
+            </div>
+            <div class="avakhada-grid">
+              <div class="avakhada-card">
+                <span class="avakhada-label">१. वर्ण (Varna)</span>
+                <span id="val_varna" class="avakhada-value">{{ initial_chart.avakhada.varna if initial_chart else '—' }}</span>
+              </div>
+              <div class="avakhada-card">
+                <span class="avakhada-label">२. वश्य (Vashya)</span>
+                <span id="val_vashya" class="avakhada-value">{{ initial_chart.avakhada.vashya if initial_chart else '—' }}</span>
+              </div>
+              <div class="avakhada-card">
+                <span class="avakhada-label">३. तत्व (Tatva)</span>
+                <span id="val_tatva" class="avakhada-value">{{ initial_chart.avakhada.tatva if initial_chart else '—' }}</span>
+              </div>
+              <div class="avakhada-card">
+                <span class="avakhada-label">४. पाया (Paya)</span>
+                <span id="val_paya" class="avakhada-value" style="color: var(--accent-gold);">{{ initial_chart.avakhada.paya if initial_chart else '—' }}</span>
+              </div>
+              <div class="avakhada-card">
+                <span class="avakhada-label">५. गण (Gana)</span>
+                <span id="val_gana" class="avakhada-value">{{ initial_chart.avakhada.gana if initial_chart else '—' }}</span>
+              </div>
+              <div class="avakhada-card">
+                <span class="avakhada-label">६. नाड़ी (Nadi)</span>
+                <span id="val_nadi" class="avakhada-value">{{ initial_chart.avakhada.nadi if initial_chart else '—' }}</span>
+              </div>
+              <div class="avakhada-card">
+                <span class="avakhada-label">७. नामाक्षर (Name Syllable)</span>
+                <span id="val_syllable" class="avakhada-value" style="color: var(--primary-vermilion); font-size: 1.3rem;">{{ initial_chart.avakhada.syllable if initial_chart else '—' }}</span>
+              </div>
+              <div class="avakhada-card">
+                <span class="avakhada-label">८. आराध्य देव (Deity)</span>
+                <span id="val_deity" class="avakhada-value">{{ initial_chart.avakhada.deity if initial_chart else '—' }}</span>
+              </div>
+              <div class="avakhada-card">
+                <span class="avakhada-label">९. प्रतीक चिह्न (Symbol)</span>
+                <span id="val_symbol" class="avakhada-value" style="font-size: 0.95rem;">{{ initial_chart.avakhada.symbol if initial_chart else '—' }}</span>
+              </div>
+            </div>
+
+            <!-- Natal Panchang Table -->
+            <div class="card-header" style="margin-top: 1.5rem;">
+              <h3 class="card-title">
+                <span>🌟</span>
+                <span>जन्म कालीन पंचांग (Natal Panchang)</span>
+              </h3>
+            </div>
+            <div class="table-responsive">
+              <table class="custom-table" aria-label="जन्म कालीन पंचांग विवरण">
+                <tbody>
+                  <tr>
+                    <td><strong>जातक का नाम</strong></td>
+                    <td id="val_user_name_2">{{ initial_chart.user_info.name if initial_chart else '—' }}</td>
+                    <td><strong>जन्म तिथि व समय</strong></td>
+                    <td id="val_birth_datetime_2">{{ initial_chart.user_info.birth_date_local if initial_chart else '—' }}, {{ initial_chart.user_info.birth_time_local if initial_chart else '—' }}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>जन्म स्थान</strong></td>
+                    <td id="val_place_name_2">{{ defaults.place_name }}</td>
+                    <td><strong>जन्म तिथि (Tithi)</strong></td>
+                    <td id="val_tithi_2">{{ initial_chart.panchang.tithi if initial_chart else '—' }}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>जन्म नक्षत्र</strong></td>
+                    <td id="val_nakshatra_2">{{ initial_chart.panchang.nakshatra if initial_chart else '—' }}</td>
+                    <td><strong>नक्षत्र स्वामी</strong></td>
+                    <td id="val_nakshatra_lord_2">{{ initial_chart.panchang.nakshatra_lord if initial_chart else '—' }}</td>
+                  </tr>
+                  <tr>
+                    <td><strong>सूर्य राशि</strong></td>
+                    <td id="val_sun_rashi_2">{{ initial_chart.panchang.sun_rashi if initial_chart else '—' }}</td>
+                    <td><strong>चंद्र राशि</strong></td>
+                    <td id="val_moon_rashi_2">{{ initial_chart.panchang.moon_rashi if initial_chart else '—' }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: 🪐 ग्रह स्थिति व अवस्था -->
+        <div id="tab-planets" class="report-tab-panel">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <span>🪐</span>
+                <span>नवग्रह स्पष्ट स्थिति एवं अवस्था सारणी (Planetary Details & Avasthas)</span>
+              </h3>
+            </div>
+            <div class="table-responsive">
+              <table class="custom-table" aria-label="ग्रह स्थिति सारणी">
+                <thead>
+                  <tr>
+                    <th scope="col" data-i18n="tbl_planet">ग्रह (Graha)</th>
+                    <th scope="col" data-i18n="tbl_motion">गति</th>
+                    <th scope="col" data-i18n="tbl_sign">राशि (Rashi)</th>
+                    <th scope="col" data-i18n="tbl_deg">अंश (DMS)</th>
+                    <th scope="col" data-i18n="tbl_nak">नक्षत्र एवं पद</th>
+                    <th scope="col" data-i18n="tbl_house">भाव</th>
+                    <th scope="col" data-i18n="tbl_avastha">ग्रह अवस्था (Avastha)</th>
+                    <th scope="col" data-i18n="tbl_dignity">मैत्री / संबंध</th>
+                  </tr>
+                </thead>
+                <tbody id="grahaTableBody">
+                  {% if initial_chart and initial_chart.grahas %}
+                    {% for g in initial_chart.grahas %}
+                      <tr>
+                        <td><strong>{{ g.name_hi }}</strong></td>
+                        <td>
+                          {% if g.is_retrograde %}
+                            <span class="badge badge-retro">वक्री</span>
+                          {% else %}
+                            <span class="badge badge-direct">मार्गी</span>
+                          {% endif %}
+                        </td>
+                        <td>{{ g.rashi.symbol }} {{ g.rashi.name_hi }} ({{ g.rashi.id }})</td>
+                        <td>{{ g.dms_str }}</td>
+                        <td>{{ g.nakshatra.name_hi }} ({{ g.pada }})</td>
+                        <td><strong>भाव {{ g.house_num }}</strong></td>
+                        <td><span style="font-size: 0.88rem;">{{ g.avastha }}</span></td>
+                        <td><strong>{{ g.dignity }}</strong></td>
+                      </tr>
+                    {% endfor %}
+                  {% endif %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 4: 🏠 द्वादश भाव विचार -->
+        <div id="tab-houses" class="report-tab-panel">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <span>🏠</span>
+                <span>द्वादश भाव एवं भावेश विचार (12 Houses Analysis)</span>
+              </h3>
+            </div>
+            <div class="houses-grid" id="housesGridContainer">
+              {% if initial_chart and initial_chart.houses %}
+                {% for h in initial_chart.houses %}
+                  <div class="house-item-card">
+                    <div class="house-item-header">
+                      <span class="house-item-title">{{ h.significance.name_hi }}</span>
+                      <span class="house-rashi-badge">{{ h.rashi.name_hi }} ({{ h.rashi.id }})</span>
+                    </div>
+                    <div style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.4rem;">
+                      भावेश (स्वामी): <strong>{{ h.rashi_lord }}</strong>
+                    </div>
+                    <div style="font-size: 0.9rem; margin-bottom: 0.5rem;">
+                      <strong>स्थित ग्रह:</strong>
+                      {% if h.grahas %}
+                        {% for g in h.grahas %}
+                          <span style="display: inline-block; background: var(--bg-card-alt); border: 1px solid var(--gold-border); padding: 0.15rem 0.45rem; border-radius: 4px; font-weight: 600; margin-right: 4px; font-size: 0.85rem;">
+                            {{ g.short_hi }}{% if g.is_retrograde and g.id not in ('rahu', 'ketu') %} (व){% endif %}
+                          </span>
+                        {% endfor %}
+                      {% else %}
+                        <span style="color: var(--text-muted);">कोई नहीं (रिक्त)</span>
+                      {% endif %}
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary); margin: 0; line-height: 1.5;">
+                      {{ h.significance.desc_hi }}
+                    </p>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 5: ⌛ विंशोत्तरी महादशा -->
+        <div id="tab-dasha" class="report-tab-panel">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">
+                <span>⏳</span>
+                <span>विंशोत्तरी महादशा चक्र (१२० वर्ष संपूर्ण चक्र)</span>
+              </h3>
+            </div>
+            <p style="font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 0.85rem;">
+              जन्म कालीन चंद्रमा नक्षत्र: <strong><span id="dasha_nak_val">{{ initial_chart.panchang.nakshatra if initial_chart else '—' }}</span></strong> | जन्म पर शेष काल: <strong><span id="dasha_bal_val">{{ initial_chart.dasha.balance_years_at_birth if initial_chart else '—' }}</span> वर्ष</strong>
+            </p>
+            <div class="table-responsive">
+              <table class="custom-table" aria-label="विंशोत्तरी महादशा सारणी">
+                <thead>
+                  <tr>
+                    <th scope="col" data-i18n="th_lord">महादशा स्वामी</th>
+                    <th scope="col" data-i18n="th_dur">अवधि (वर्ष)</th>
+                    <th scope="col" data-i18n="th_start">प्रारंभ तिथि</th>
+                    <th scope="col" data-i18n="th_end">समाप्ति तिथि</th>
+                    <th scope="col" data-i18n="th_status">स्थिति</th>
+                  </tr>
+                </thead>
+                <tbody id="dashaTableBody">
+                  {% if initial_chart and initial_chart.dasha and initial_chart.dasha.cycle %}
+                    {% for d in initial_chart.dasha.cycle %}
+                      <tr class="{% if d.is_active %}active-dasha-row{% endif %}">
+                        <td><strong>{{ d.lord_hi }} ({{ d.lord_en }})</strong></td>
+                        <td>{{ d.balance_years_formatted }}</td>
+                        <td>{{ d.start_date }}</td>
+                        <td>{{ d.end_date }}</td>
+                        <td>
+                          {% if d.is_active %}
+                            <span class="badge badge-active">वर्तमान सक्रिय</span>
+                          {% elif d.is_birth %}
+                            <span class="badge" style="background:#E2D9CC;color:#4A4036">जन्म कालीन</span>
+                          {% else %}
+                            —
+                          {% endif %}
+                        </td>
+                      </tr>
+                    {% endfor %}
+                  {% endif %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 6: 🛡️ दोष एवं योग विश्लेषण -->
+        <div id="tab-doshas" class="report-tab-panel">
+          <!-- 1. Manglik Dosha -->
+          <div class="dosha-box" id="manglikBox">
+            <div class="dosha-box-header">
+              <h3 class="dosha-box-title">🔥 मांगलिक दोष विचार (Manglik Dosha)</h3>
+              <span class="dosha-badge" id="manglikBadge" style="background: {{ initial_chart.manglik.badge_color if initial_chart else '#2E7D32' }};">
+                {{ initial_chart.manglik.status if initial_chart else 'दोष मुक्त' }}
+              </span>
+            </div>
+            <p class="dosha-desc" id="manglikDesc">
+              {{ initial_chart.manglik.description if initial_chart else 'विवरण उपलब्ध नहीं।' }}
+            </p>
+            {% if initial_chart and initial_chart.manglik.pariharas %}
+              <div style="margin-top: 0.75rem; background: #FFFDF9; border: 1px solid var(--border-light); border-radius: 6px; padding: 0.75rem;">
+                <strong style="color: var(--accent-gold); font-size: 0.9rem;">शास्त्रीय परिहार नियम:</strong>
+                <ul id="manglikPariharaList" style="margin: 0.4rem 0 0 1.25rem; font-size: 0.88rem; color: var(--text-primary); line-height: 1.6;">
+                  {% for p in initial_chart.manglik.pariharas %}
+                    <li>{{ p }}</li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- 2. Shani Sade Sati -->
+          <div class="dosha-box" id="sadeSatiBox" style="border-left-color: var(--accent-gold);">
+            <div class="dosha-box-header">
+              <h3 class="dosha-box-title">🪐 शनि साढ़े साती एवं ढैया (Shani Sade Sati)</h3>
+              <span class="dosha-badge" id="sadeSatiBadge" style="background: {{ initial_chart.sade_sati.badge_color if initial_chart else '#2E7D32' }};">
+                {{ initial_chart.sade_sati.phase if initial_chart else 'साढ़े साती मुक्त' }}
+              </span>
+            </div>
+            <p class="dosha-desc" id="sadeSatiDesc">
+              {{ initial_chart.sade_sati.description if initial_chart else 'वर्तमान में शनि की साढ़े साती अथवा ढैया का कोई प्रभाव नहीं है।' }}
+            </p>
+          </div>
+
+          <!-- 3. Kalsarp Dosha -->
+          <div class="dosha-box" id="kalsarpBox" style="border-left-color: #0D828A;">
+            <div class="dosha-box-header">
+              <h3 class="dosha-box-title">🐍 कालसर्प योग विचार (Kalsarp Yoga)</h3>
+              <span class="dosha-badge" id="kalsarpBadge" style="background: {{ initial_chart.kalsarp.badge_color if initial_chart else '#2E7D32' }};">
+                {{ initial_chart.kalsarp.name if initial_chart else 'दोष मुक्त' }}
+              </span>
+            </div>
+            <p class="dosha-desc" id="kalsarpDesc">
+              {{ initial_chart.kalsarp.description if initial_chart else 'कुंडली में सभी ग्रह राहु-केतु अक्ष के दोनों ओर संतुलित हैं।' }}
+            </p>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <!-- Educational Explanatory Content in Hindi (7 Sections, 120-150 words each) -->
+    <section class="educational-section print-hide" aria-labelledby="eduTitle">
+      <h2 id="eduTitle">वैदिक ज्योतिष के मूलभूत स्तंभ एवं विस्तृत व्याख्या</h2>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+        वैदिक जन्म कुंडली (Janam Kundali) आकाश में किसी जातक के जन्म क्षण का खगोलीय मानचित्र है। इसके प्रमुख सात स्तंभों की गहन एवं प्रामाणिक व्याख्या:
+      </p>
+
+      <div class="edu-grid">
+        <!-- 1. Lagna (138 words) -->
+        <article class="edu-box">
+          <h3><span>🌅</span> १. लग्न क्या होता है? (Lagna / Ascendant)</h3>
+          <p>
+            जन्म के समय पूर्वी क्षितिज पर जो राशि उदित हो रही होती है, उसे लग्न या प्रथम भाव कहा जाता है। चूंकि पृथ्वी अपनी धुरी पर २४ घंटे में एक चक्कर पूरा करती है, इसलिए लगभग हर दो घंटे में पूर्वी क्षितिज पर राशि बदल जाती है। इसी कारण एक ही दिन जन्मे दो व्यक्तियों की कुंडली और स्वभाव में बड़ा अंतर देखने को मिलता है। वैदिक ज्योतिष में लग्न को संपूर्ण जन्म पत्रिका का प्राण और आधार स्तंभ माना गया है। लग्न भाव से व्यक्ति का शारीरिक स्वरूप, स्वास्थ्य, मानसिक प्रवृत्ति, आत्मबल, सोचने का ढंग तथा जीवन के प्रति उसका बुनियादी दृष्टिकोण निर्धारित होता है। यदि लग्न और लग्नेश बलवान हों, तो व्यक्ति जीवन की कठिन से कठिन परिस्थितियों में भी स्थिरता और सफलता प्राप्त करता है। यह कुंडली का प्रथम केंद्र और प्रथम त्रिकोण भाव है।
+          </p>
+        </article>
+
+        <!-- 2. Rashi (134 words) -->
+        <article class="edu-box">
+          <h3><span>♈</span> २. राशि क्या है? (Rashi / Zodiac Signs)</h3>
+          <p>
+            सम्पूर्ण ३६० अंश के भचक्र को तीस-तीस अंशों के बारह समान भागों में विभाजित किया गया है, जिन्हें राशि कहा जाता है। ये बारह राशियां हैं—मेष, वृषभ, मिथुन, कर्क, सिंह, कन्या, तुला, वृश्चिक, धनु, मकर, कुम्भ और मीन। प्रत्येक राशि का एक स्वामी ग्रह होता है, जैसे मेष व वृश्चिक के स्वामी मंगल हैं और वृषभ व तुला के शुक्र हैं। वैदिक ज्योतिष में सामान्यतः 'राशि' शब्द का प्रयोग जन्म कालीन चंद्र राशि के लिए किया जाता है, यानी जन्म के समय चंद्रमा जिस राशि में गोचर कर रहा था। चंद्र राशि व्यक्ति के मन, भावनाओं, अंतर्मन, स्वभाव और व्यवहारिक दृष्टिकोण को दर्शाती है। वहीं सूर्य जिस राशि में होता है, वह सूर्य राशि कहलाती है जो आत्मिक तेज और अहंकार को दिखाती है। प्रत्येक राशि का अपना तत्व, स्वभाव और गुण होता है।
+          </p>
+        </article>
+
+        <!-- 3. Nakshatra (133 words) -->
+        <article class="edu-box">
+          <h3><span>✨</span> ३. २७ नक्षत्र और ४ चरण (Nakshatra & Pada)</h3>
+          <p>
+            वैदिक ज्योतिषीय काल-गणना की सबसे सूक्ष्म और महत्वपूर्ण इकाई नक्षत्र है। प्राचीन भारतीय ऋषियों ने संपूर्ण क्रांतिवृत्त को सत्ताईस बराबर भागों में बांटा, जिनमें से प्रत्येक भाग १३ अंश २० कला (८०० कला) का होता है। अश्विनी से प्रारंभ होकर रेवती तक कुल २७ नक्षत्र होते हैं। प्रत्येक नक्षत्र का अपना एक स्वामी ग्रह, एक अधिष्ठाता देवता और एक विशिष्ट प्रतीक चिह्न होता है। इतना ही नहीं, प्रत्येक नक्षत्र को आगे चार समान भागों में बांटा गया है, जिन्हें 'पद' या 'चरण' कहते हैं। एक पद ३ अंश २० कला (२०० कला) का होता है। कुल मिलाकर भचक्र में १०८ पद होते हैं, जो नवमांश कुंडली का निर्माण करते हैं। जन्म के समय चंद्रमा जिस नक्षत्र और पद में होता है, उसी से जातक का नामकरण अक्षर और विंशोत्तरी दशा निर्धारित होती है।
+          </p>
+        </article>
+
+        <!-- 4. Bhav (132 words) -->
+        <article class="edu-box">
+          <h3><span>🏛️</span> ४. १२ भाव और जीवन के आयाम (12 Bhavas / Houses)</h3>
+          <p>
+            कुंडली के बारह खानों को भाव (House) कहा जाता है। प्रत्येक भाव मानव जीवन के एक विशिष्ट आयाम और अनुभव का प्रतिनिधित्व करता है। प्रथम भाव शरीर और व्यक्तित्व का है, द्वितीय भाव धन, वाणी और परिवार का है, तृतीय भाव पराक्रम और छोटे भाई-बहनों का है, चतुर्थ भाव माता, गृह और मानसिक सुख का है। पंचम भाव विद्या, बुद्धि और संतान का, छठा भाव रोग, ऋण और संघर्ष का, सातवां भाव जीवनसाथी और साझेदारी का, आठवां भाव आयु और गूढ़ रहस्यों का है। नवम भाव धर्म और भाग्य का, दशम भाव कर्म और प्रतिष्ठा का, एकादश भाव आय और मित्रों का, तथा द्वादश भाव व्यय और मोक्ष का प्रतीक है। सम्पूर्ण राशि भाव प्रणाली (Whole Sign) में लग्न राशि को प्रथम भाव मानकर क्रमशः शेष भावों की गणना की जाती है।
+          </p>
+        </article>
+
+        <!-- 5. Vimshottari Dasha (136 words) -->
+        <article class="edu-box">
+          <h3><span>⌛</span> ५. विंशोत्तरी महादशा चक्र (Vimshottari Dasha)</h3>
+          <p>
+            महर्षि पाराशर द्वारा प्रतिपादित विंशोत्तरी दशा वैदिक ज्योतिष में काल-निर्धारण (Timing of Events) की सबसे प्रामाणिक पद्धति है। मानव जीवन की संभावित पूर्ण आयु १२० वर्ष मानकर इस अवधि को नौ ग्रहों में विभाजित किया गया है। केतु को ७ वर्ष, शुक्र को २० वर्ष, सूर्य को ६ वर्ष, चंद्रमा को १० वर्ष, मंगल को ७ वर्ष, राहु को १८ वर्ष, गुरु को १६ वर्ष, शनि को १९ वर्ष और बुध को १७ वर्ष का कालखंड प्राप्त है। जन्म के समय चंद्रमा जिस नक्षत्र में होता है, उसी नक्षत्र के स्वामी की महादशा से व्यक्ति का जीवन प्रारंभ होता है। चंद्रमा ने उस नक्षत्र में कितना भ्रमण कर लिया है और कितना शेष है, इसके आधार पर प्रथम दशा का भुक्त और भोग्य काल निकाला जाता है, तत्पश्चात शेष महादशाएं एक निश्चित क्रम में आती हैं।
+          </p>
+        </article>
+
+        <!-- 6. Manglik Dosh (132 words) -->
+        <article class="edu-box">
+          <h3><span>🔥</span> ६. मांगलिक विचार: तथ्य बनाम भ्रम (Manglik Vichar)</h3>
+          <p>
+            वैदिक ज्योतिष में मंगल ग्रह को ऊर्जा, साहस, रक्त और आक्रामकता का कारक माना गया है। जब जन्म कुंडली के लग्न, चतुर्थ, सप्तम, अष्टम अथवा द्वादश भाव में मंगल स्थित होता है, तो इसे पारंपरिक भाषा में 'मांगलिक विचार' कहा जाता है। आधुनिक समय में इस विषय को लेकर समाज में अत्यधिक भय और भ्रम फैला दिया गया है, जबकि प्राचीन ग्रंथों में इसे केवल स्वभाव की अत्यधिक सक्रियता और वैवाहिक सामंजस्य की आवश्यकता के रूप में देखा गया है। मांगलिक होना कोई अभिशाप या दोष नहीं है, बल्कि यह जातक में दृढ़ इच्छाशक्ति और निर्भीकता को दर्शाता है। गुरु की दृष्टि, स्वराशि का मंगल या मित्र ग्रहों के प्रभाव से मंगल का उग्र प्रभाव स्वाभाविक रूप से शांत हो जाता है, अतः डरने या अंधविश्वास में पड़ने की आवश्यकता नहीं है।
+          </p>
+        </article>
+
+        <!-- 7. Sade Sati (135 words) -->
+        <article class="edu-box" style="grid-column: 1 / -1;">
+          <h3><span>🪐</span> ७. शनि की साढ़े साती का यथार्थ (Shani Sade Sati)</h3>
+          <p>
+            शनि देव को कर्मफल प्रदाता, अनुशासन और समय का नियंत्रक ग्रह माना गया है। जब गोचर का शनि किसी जातक की जन्म चंद्र राशि से बारहवें भाव में आता है, फिर जन्म राशि पर आता है, और अंत में द्वितीय भाव से गुजरता है, तो इस संपूर्ण अवधि को साढ़े साती कहा जाता है। चूंकि शनि एक राशि में लगभग ढाई वर्ष रहते हैं, अतः तीन राशियों का भ्रमण कुल साढ़े सात वर्ष का होता है। साढ़े साती को लेकर समाज में केवल विपत्ति और कष्ट का डर बैठाया गया है, जो कि भ्रामक है। वास्तव में साढ़े साती आत्म-मंथन, अनुशासन सीखने, अहंकार को त्यागने और कर्मों के परिष्कार का समय होती है। यदि व्यक्ति सत्य, ईमानदारी और परिश्रम के मार्ग पर चले, तो साढ़े साती जीवन में अभूतपूर्व उन्नति और परिपक्वता प्रदान करती है।
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Ethical Pledge Card (No Fear-Based Upsell) -->
+    <section class="ethical-note-card print-hide" aria-label="नैतिक सिद्धांत सूचना">
+      <h4>🛡️ हमारा नैतिक संकल्प: शुद्ध खगोलीय वैदिक गणना</h4>
+      <p>
+        यह वेबसाइट किसी भी प्रकार के भय-आधारित अंधविश्वास, काल सर्प दोष निवारण, मांगलिक भय, महंगे रत्न बेचने या कर्मकांडीय व्यापार का समर्थन नहीं करती। यह विशुद्ध रूप से प्राचीन वैदिक ज्योतिषीय गणित तथा आधुनिक स्विस एफिमेरिस खगोलीय गणनाओं पर आधारित एक स्वतंत्र ज्ञानोपयोगी साधन है।
+      </p>
+    </section>
+
+    <!-- FAQ Section (Exactly 8 Questions and Answers) -->
+    <section class="faq-section print-hide" aria-labelledby="faqTitle">
+      <h2 id="faqTitle">प्रायः पूछे जाने वाले प्रश्न (FAQ - अक्सर पूछे जाने वाले सवाल)</h2>
+      
+      <!-- FAQ 1 -->
+      <div class="faq-item">
+        <button type="button" class="faq-question">
+          <span>१. जन्म समय कुछ मिनट गलत हो तो कुंडली पर क्या फर्क पड़ता है?</span>
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          पृथ्वी अपनी धुरी पर २४ घंटे में ३६० अंश घूमती है, जिसका अर्थ है कि लगभग प्रति ४ मिनट में १ अंश की गति होती है और औसतन २ घंटे में लग्न राशि बदल जाती है। यदि जन्म समय में केवल ५ से १० मिनट का भी अंतर हो, तो विशेष रूप से संधि लग्न (दो राशियों के मिलन बिंदु) पर लग्न राशि बदल सकती है। इसके अतिरिक्त, नवमांश कुंडली (D9) और विंशोत्तरी दशा के प्रारंभ समय में महीनों का अंतर आ सकता है। इसलिए सटीक जन्म समय अत्यंत आवश्यक है।
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-item">
+        <button type="button" class="faq-question">
+          <span>२. जन्म स्थान और टाइमज़ोन (Timezone) की सही जानकारी क्यों जरूरी है?</span>
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          लग्न और भावों की खगोलीय स्थिति स्थानीय क्षितिज (Local Horizon) से तय होती है, जो जन्म स्थान के सटीक अक्षांश (Latitude) और देशांतर (Longitude) पर निर्भर करती है। इसके अलावा, सही IANA टाइमज़ोन न होने पर स्थानीय समय को ग्रीनविच समय (UTC) में बदलते समय त्रुटि हो सकती है। हमारा इंजन Python zoneinfo का उपयोग करके स्वतंत्रता पूर्व भारत के ऐतिहासिक समय परिवर्तनों (जैसे द्वितीय विश्व युद्ध का War Daylight Time +06:30) को भी स्वतः सही करता है।
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-item">
+        <button type="button" class="faq-question">
+          <span>३. लग्न (Ascendant) की गणना कैसे होती है और लग्न कैसे निकालें?</span>
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          लग्न की गणना के लिए सबसे पहले जातक के जन्म समय को स्थानीय नाक्षत्र समय (Local Sidereal Time / RAMC) में बदला जाता है। इसके पश्चात जन्म स्थान के अक्षांश के आधार पर पूर्वी क्षितिज और क्रांतिवृत्त (Ecliptic) के प्रतिच्छेदन बिंदु का कोण निकाला जाता है। इसमें से आधिकारिक लाहिड़ी अयनांश घटाने पर निरयण लग्न स्पष्ट (Sidereal Ascendant) प्राप्त होता है, जो कुंडली का प्रथम भाव बनता है।
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq-item">
+        <button type="button" class="faq-question">
+          <span>४. अयनांश (Ayanamsa) क्या है और लाहिड़ी अयनांश ही क्यों चुना जाता है?</span>
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          पृथ्वी के घूर्णन अक्ष के धीमी गति से डोलने (Precession of Equinoxes) के कारण सायन (Tropical) और निरयण (Sidereal) राशियों के मध्य एक कोणीय दूरी उत्पन्न हो जाती है, जिसे अयनांश कहते हैं। लाहिड़ी अयनांश (चित्रापक्ष) को भारत सरकार की कैलेंडर सुधार समिति (1955) द्वारा आधिकारिक राष्ट्रीय मानक घोषित किया गया है, जो चित्रा नक्षत्र के ठीक सामने 180 अंश पर तुला राशि की शुरुआत को आधार मानता है।
+        </div>
+      </div>
+
+      <!-- FAQ 5 -->
+      <div class="faq-item">
+        <button type="button" class="faq-question">
+          <span>५. राशि और नक्षत्र में क्या मूलभूत अंतर है और नक्षत्र कैसे पता करें?</span>
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          राशि भचक्र का ३० अंश का एक बड़ा विभाजन है (कुल १२ राशियां = ३६० अंश), जबकि नक्षत्र १३ अंश २० कला (८०० कला) का अधिक सूक्ष्म विभाजन है (कुल २७ नक्षत्र = ३६० अंश)। एक राशि में सवा दो (२.२५) नक्षत्र अथवा ९ चरण समाहित होते हैं। राशि व्यक्ति के स्थूल स्वभाव को दर्शाती है, जबकि नक्षत्र और उसके चरण आंतरिक प्रवृत्तियों, नामकरण और विंशोत्तरी दशा के निर्धारण में निर्णायक होते हैं।
+        </div>
+      </div>
+
+      <!-- FAQ 6 -->
+      <div class="faq-item">
+        <button type="button" class="faq-question">
+          <span>६. क्या विंशोत्तरी महादशा का फल हर व्यक्ति के लिए समान होता है?</span>
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          कदापि नहीं। विंशोत्तरी दशा के परिणाम इस बात पर निर्भर करते हैं कि संबंधित दशा स्वामी ग्रह जातक की कुंडली में किस लग्न के अनुसार किन भावों का स्वामी है, वह किस भाव में बैठा है, किस राशि व नक्षत्र में है, उस पर किन शुभ या अशुभ ग्रहों की दृष्टि है और उसकी षडबल शक्ति कैसी है। उदाहरणार्थ, मेष लग्न के लिए गुरु नवमेश व द्वादशेश होकर शुभ फल देता है, जबकि वृषभ लग्न के लिए गुरु अष्टमेश होने से भिन्न फल देता है।
+        </div>
+      </div>
+
+      <!-- FAQ 7 -->
+      <div class="faq-item">
+        <button type="button" class="faq-question">
+          <span>७. मांगलिक होना क्या वास्तव में कोई बड़ा अनिष्ट या दोष है?</span>
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          बिल्कुल नहीं। पारंपरिक ग्रंथों में केवल १, ४, ७, ८ या १२वें भाव में मंगल होने पर जातक में अत्यधिक ऊर्जा, दृढ़ता और स्पष्टवादिता मानी गई है। इसे समाज में अनुचित भय का साधन बना दिया गया है। गुरु की दृष्टि, स्वराशि या उच्च राशि का मंगल, अथवा २८ वर्ष की आयु के पश्चात मंगल का उग्र प्रभाव स्वाभाविक रूप से संतुलित हो जाता है। अतः डरने या महंगे अनुष्ठान कराने की कोई आवश्यकता नहीं है।
+        </div>
+      </div>
+
+      <!-- FAQ 8 -->
+      <div class="faq-item">
+        <button type="button" class="faq-question">
+          <span>८. शनि की साढ़े साती क्या हमेशा कष्टकारी और अनिष्टकारक ही होती है?</span>
+          <span class="faq-icon">▼</span>
+        </button>
+        <div class="faq-answer">
+          यह एक बड़ा भ्रम है कि साढ़े साती केवल विपत्ति लाती है। शनि न्याय और यथार्थ के देवता हैं। साढ़े साती के साढ़े सात वर्ष व्यक्ति को आलस्य और अहंकार छोड़कर यथार्थवादी, अनुशासित और परिश्रमी बनने की सीख देते हैं। वृषभ, तुला, मकर और कुंभ राशि वालों के लिए शनि मित्र या स्वग्रही होने के कारण साढ़े साती में करियर, प्रतिष्ठा और संपत्ति की अभूतपूर्व उन्नति भी प्रदान करते हैं।
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Site Footer with Internal Links -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p style="font-weight: 600; color: #FFFFFF; font-size: 1.05rem;">वैदिक जन्म कुंडली (Vedic Janam Kundali)</p>
+      <p class="footer-copy">
+        <a href="/" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">जन्म कुंडली</a>
+        <a href="/matching" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">कुंडली मिलान</a>
+        <a href="/lagna-calculator" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">लग्न कैलकुलेटर</a>
+        <a href="/vimshottari-dasha" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">महादशा</a>
+        <a href="/nakshatra-calculator" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">नक्षत्र</a>
+        <a href="/manglik-dosh" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">मांगलिक दोष</a>
+        <a href="/sade-sati" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">साढ़े साती</a>
+        <a href="/panchang" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">पंचांग</a>
+        <a href="/about" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">हमारे बारे में</a>
+        <a href="/privacy" style="color:#FFD97D; margin-right: 12px; font-weight: 600;">गोपनीयता नीति</a>
+        <a href="/sitemap.xml" style="color:#FFD97D; font-weight: 600;">साइटमैप</a><br><br>
+        संचालित: Python Flask + Swiss Ephemeris (pyswisseph) | OpenStreetMap Nominatim<br>
+        &copy; 2026 वैदिक जन्म कुंडली | AGPL-3.0 Ephemeris Compliance
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    window.INITIAL_KUNDLI_DATA = {{ initial_chart | tojson | safe }};
+  </script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
