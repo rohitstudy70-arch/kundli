@@ -43,6 +43,10 @@ DEFAULT_CHART_PARAMS = {
 }
 
 
+@app.errorhandler(404)
+def not_found(e):
+    return f"Debug 404 on path: {request.path}, url: {request.url}, environ path_info: {request.environ.get('PATH_INFO')}", 404
+
 @app.route("/")
 def index():
     """Serves the single-page Hindi Kundali application."""
