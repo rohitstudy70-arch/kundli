@@ -29,6 +29,29 @@ app = Flask(
     static_folder=os.path.join(BASE_DIR, "static")
 )
 
+# WSGI Middleware to restore original PATH_INFO when Vercel rewrites to /api/index
+class VercelPathFixer:
+    def __init__(self, wsgi_app):
+        self.wsgi_app = wsgi_app
+
+    def __call__(self, environ, start_response):
+        qs = environ.get('QUERY_STRING', '')
+        if '__path=' in qs:
+            params = urllib.parse.parse_qs(qs, keep_blank_values=True)
+            if '__path' in params:
+                original_path = params['__path'][0]
+                if not original_path.startswith('/'):
+                    original_path = '/' + original_path
+                environ['PATH_INFO'] = original_path
+                del params['__path']
+                environ['QUERY_STRING'] = urllib.parse.urlencode(params, doseq=True)
+        elif environ.get('PATH_INFO', '') in ('/api/index', '/api/index/'):
+            environ['PATH_INFO'] = '/'
+
+        return self.wsgi_app(environ, start_response)
+
+app.wsgi_app = VercelPathFixer(app.wsgi_app)
+
 
 # Default sample chart data for initial page load
 DEFAULT_CHART_PARAMS = {
@@ -44,7 +67,6 @@ DEFAULT_CHART_PARAMS = {
 
 
 @app.route("/")
-@app.route("/api/index")
 def index():
     """Serves the single-page Hindi Kundali application."""
     initial_data = None
