@@ -502,6 +502,7 @@ def api_calculate():
 
 
 @app.route("/api/search-place", methods=["GET"])
+@app.route("/api/search_place", methods=["GET"])
 def api_search_place():
     """
     Proxies search queries to OpenStreetMap Nominatim with debounced rate compliance

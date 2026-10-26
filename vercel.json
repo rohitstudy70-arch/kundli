@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/api/search-place",
+      "destination": "/api/search_place"
+    },
+    {
       "source": "/(.*)",
       "destination": "/api/index?__path=/$1"
     }
