@@ -265,7 +265,7 @@
         </p>
 
         <!-- Summary comparison tags -->
-        <div style="display: flex; justify-content: center; gap: 2rem; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-light); flex-wrap: wrap;">
+        <div class="match-summary-tags" style="display: flex; justify-content: center; gap: 2rem; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border-light); flex-wrap: wrap;">
           <div>
             <strong>🤵 वर (Groom):</strong> <span id="res_groom_summary">{{ initial_match.summary.groom.name if initial_match else '' }} | लग्न: {{ initial_match.summary.groom.lagna if initial_match else '' }} | राशि: {{ initial_match.summary.groom.rashi if initial_match else '' }} | {{ initial_match.summary.groom.nakshatra if initial_match else '' }}</span>
           </div>
