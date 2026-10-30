@@ -367,12 +367,6 @@ def google_verification_exact():
     return Response("google-site-verification: google9c3fd5e3163a1fd7.html\n", mimetype="text/html")
 
 
-@app.route("/google<token>.html")
-def google_verification_dynamic(token):
-    """Google Search Console dynamic file verification for any site token."""
-    return Response(f"google-site-verification: google{token}.html\n", mimetype="text/html")
-
-
 @app.route("/robots.txt")
 def robots_txt():
     """Returns robots.txt for search engine crawlers."""
