@@ -361,13 +361,28 @@ def privacy():
     return render_template("privacy.html")
 
 
+@app.route("/google9c3fd5e3163a1fd7.html")
+def google_verification_exact():
+    """Google Search Console exact file verification."""
+    return Response("google-site-verification: google9c3fd5e3163a1fd7.html\n", mimetype="text/html")
+
+
+@app.route("/google<token>.html")
+def google_verification_dynamic(token):
+    """Google Search Console dynamic file verification for any site token."""
+    return Response(f"google-site-verification: google{token}.html\n", mimetype="text/html")
+
+
 @app.route("/robots.txt")
 def robots_txt():
     """Returns robots.txt for search engine crawlers."""
+    host = request.host_url.rstrip('/')
+    if "127.0.0.1" in host or "localhost" in host:
+        host = "https://kundli-ashen.vercel.app"
     content = (
         "User-agent: *\n"
         "Allow: /\n"
-        "Sitemap: http://127.0.0.1:5000/sitemap.xml\n"
+        f"Sitemap: {host}/sitemap.xml\n"
     )
     return Response(content, mimetype="text/plain")
 
@@ -375,65 +390,68 @@ def robots_txt():
 @app.route("/sitemap.xml")
 def sitemap_xml():
     """Returns XML sitemap for SEO discovery."""
+    host = request.host_url.rstrip('/')
+    if "127.0.0.1" in host or "localhost" in host:
+        host = "https://kundli-ashen.vercel.app"
     today = datetime.now().strftime("%Y-%m-%d")
     xml_content = f"""<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://127.0.0.1:5000/</loc>
+    <loc>{host}/</loc>
     <lastmod>{today}</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>http://127.0.0.1:5000/matching</loc>
+    <loc>{host}/matching</loc>
     <lastmod>{today}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>http://127.0.0.1:5000/lagna-calculator</loc>
+    <loc>{host}/lagna-calculator</loc>
     <lastmod>{today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
-    <loc>http://127.0.0.1:5000/vimshottari-dasha</loc>
+    <loc>{host}/vimshottari-dasha</loc>
     <lastmod>{today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
-    <loc>http://127.0.0.1:5000/nakshatra-calculator</loc>
+    <loc>{host}/nakshatra-calculator</loc>
     <lastmod>{today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
-    <loc>http://127.0.0.1:5000/manglik-dosh</loc>
+    <loc>{host}/manglik-dosh</loc>
     <lastmod>{today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://127.0.0.1:5000/sade-sati</loc>
+    <loc>{host}/sade-sati</loc>
     <lastmod>{today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://127.0.0.1:5000/panchang</loc>
+    <loc>{host}/panchang</loc>
     <lastmod>{today}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>http://127.0.0.1:5000/about</loc>
+    <loc>{host}/about</loc>
     <lastmod>{today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.60</priority>
   </url>
   <url>
-    <loc>http://127.0.0.1:5000/privacy</loc>
+    <loc>{host}/privacy</loc>
     <lastmod>{today}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.50</priority>
